@@ -23,3 +23,52 @@ export function track(event, params = {}) {
     /* analytics must never break the UI */
   }
 }
+
+/**
+ * A conversion (e.g. "Lead") deduped across GA4 + Meta Pixel + Meta CAPI.
+ * One shared event_id lets Meta count the browser Pixel event and the
+ * server-side CAPI call once. Also sets GA Enhanced Conversions user data
+ * (GA hashes it client-side). Safe no-op if nothing is configured.
+ */
+export function trackConversion(event, { value, params = {}, user } = {}) {
+  if (typeof window === "undefined") return;
+  const eventId =
+    window.crypto?.randomUUID?.() ||
+    `${event}-${Date.now()}-${(window.performance?.now?.() || 0) | 0}`;
+  try {
+    if (typeof window.gtag === "function") {
+      if (user && (user.email || user.phone)) {
+        window.gtag("set", "user_data", {
+          email: user.email || undefined,
+          phone_number: user.phone || undefined,
+        });
+      }
+      window.gtag("event", event, { ...params, value, currency: "CAD" });
+    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event, ...params, value });
+    if (typeof window.fbq === "function") {
+      window.fbq(
+        "track",
+        event,
+        { ...params, value, currency: "CAD" },
+        { eventID: eventId }
+      );
+    }
+    // Server-side CAPI with the same event_id → deduped against the Pixel.
+    fetch("/api/capi", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event,
+        eventId,
+        value,
+        user,
+        eventSourceUrl: window.location.href,
+      }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    /* never break the UI */
+  }
+}

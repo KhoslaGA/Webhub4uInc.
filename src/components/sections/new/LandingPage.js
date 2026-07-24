@@ -3,8 +3,13 @@ import Link from "next/link";
 import AITerminal from "./AITerminal";
 import DemoRequestForm from "./DemoRequestForm";
 import PhoneLink from "./PhoneLink";
+import BookingEmbed from "./BookingEmbed";
 import { BUSINESS, OFFER } from "@/lib/business";
 import styles from "./LandingPage.module.css";
+
+// NAP-safe DNI: ad pages can route to a call-tracking number without touching
+// the canonical business phone used in JSON-LD / citations.
+const LP_PHONE = process.env.NEXT_PUBLIC_LP_TRACKING_PHONE || BUSINESS.phone;
 
 const VALUES = [
   { t: "Answers 24/7", d: "Every call, day or night — never a voicemail again." },
@@ -33,7 +38,11 @@ export default function LandingPage({ copy, source }) {
               priority
             />
           </Link>
-          <PhoneLink source={`${source}-header`} className={styles.headerPhone} />
+          <PhoneLink
+            source={`${source}-header`}
+            className={styles.headerPhone}
+            number={LP_PHONE}
+          />
         </div>
       </header>
 
@@ -52,8 +61,9 @@ export default function LandingPage({ copy, source }) {
               <PhoneLink
                 source={`${source}-hero`}
                 className="wh-btn wh-btn--ghost-dark"
+                number={LP_PHONE}
               >
-                📞 {BUSINESS.phone}
+                📞 {LP_PHONE}
               </PhoneLink>
             </div>
             <p className={styles.reassure}>
@@ -99,6 +109,9 @@ export default function LandingPage({ copy, source }) {
           </div>
         </div>
       </section>
+
+      {/* self-booking (dormant until NEXT_PUBLIC_GHL_CALENDAR_URL is set) */}
+      <BookingEmbed />
 
       {/* minimal footer — no nav */}
       <footer className={styles.footer}>

@@ -23,6 +23,7 @@ export async function POST(req) {
     email = "",
     business = "",
     vertical = "",
+    bestTime = "",
     message = "",
     source = "webhub4u.com",
   } = body || {};
@@ -43,7 +44,7 @@ export async function POST(req) {
     companyName: business || undefined,
     source,
     tags: ["ai-receptionist-demo", vertical].filter(Boolean),
-    customFields: { vertical, message },
+    customFields: { vertical, bestTime, message },
     submittedAt: new Date().toISOString(),
   };
 
@@ -78,6 +79,7 @@ export async function POST(req) {
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Business:</strong> ${business || "—"}</p>
           <p><strong>Vertical:</strong> ${vertical || "—"}</p>
+          <p><strong>Best time to reach:</strong> ${bestTime || "—"}</p>
           <p><strong>Email:</strong> ${email || "—"}</p>
           <p><strong>Message:</strong><br/>${String(message).replace(/\n/g, "<br/>")}</p>
           <p style="color:#888"><em>Source: ${source}</em></p>
