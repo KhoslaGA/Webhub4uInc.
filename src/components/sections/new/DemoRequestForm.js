@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { track } from "@/lib/analytics";
+import { track, trackConversion } from "@/lib/analytics";
 import styles from "./DemoRequestForm.module.css";
 
 const VERTICALS = [
@@ -12,12 +12,17 @@ const VERTICALS = [
   "Other",
 ];
 
+const TIMES = ["Anytime", "Morning", "Afternoon", "Evening"];
+
 const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
   const [form, setForm] = useState({
     name: "",
     business: "",
     phone: "",
+    email: "",
     vertical: VERTICALS[0],
+    bestTime: TIMES[0],
+    message: "",
   });
   const [status, setStatus] = useState("idle"); // idle | sending | ok | error
 
@@ -35,7 +40,14 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
       if (res.ok) {
         setStatus("ok");
         track("demo_request", { vertical: form.vertical, source });
-        track("lead_form_submit", { form: "demo_request", source });
+        trackConversion("Lead", {
+          params: { vertical: form.vertical, source },
+          user: {
+            name: form.name,
+            phone: form.phone,
+            email: form.email,
+          },
+        });
       } else {
         setStatus("error");
       }
@@ -50,8 +62,12 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
         <p className={styles.successIcon}>✓</p>
         <h3>You&apos;re in, {form.name.split(" ")[0] || "there"}.</h3>
         <p>
-          We&apos;ll call {form.phone || "you"} shortly to walk you through a
-          live demo — you&apos;ll hear exactly what your callers would hear.
+          We&apos;ll reach out {form.phone ? `at ${form.phone}` : "shortly"}
+          {form.bestTime && form.bestTime !== "Anytime"
+            ? ` (${form.bestTime.toLowerCase()})`
+            : ""}{" "}
+          to set up a live demo — you&apos;ll hear exactly what your callers
+          would hear.
         </p>
       </div>
     );
@@ -90,6 +106,17 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
           />
         </label>
         <label>
+          Email <span className={styles.optional}>(optional)</span>
+          <input
+            type="email"
+            value={form.email}
+            onChange={update("email")}
+            placeholder="you@business.com"
+          />
+        </label>
+      </div>
+      <div className={styles.row}>
+        <label>
           Your business is…
           <select value={form.vertical} onChange={update("vertical")}>
             {VERTICALS.map((v) => (
@@ -97,7 +124,24 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
             ))}
           </select>
         </label>
+        <label>
+          Best time to reach you
+          <select value={form.bestTime} onChange={update("bestTime")}>
+            {TIMES.map((t) => (
+              <option key={t}>{t}</option>
+            ))}
+          </select>
+        </label>
       </div>
+      <label>
+        Anything we should know? <span className={styles.optional}>(optional)</span>
+        <textarea
+          rows={3}
+          value={form.message}
+          onChange={update("message")}
+          placeholder="e.g. we miss a lot of after-hours calls, or we already use a booking tool"
+        />
+      </label>
       <button
         type="submit"
         className="wh-btn wh-btn--primary"

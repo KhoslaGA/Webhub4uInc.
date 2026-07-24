@@ -2,6 +2,7 @@ import PageShell from "@/components/sections/new/PageShell";
 import PageHero from "@/components/sections/new/PageHero";
 import ContactForm from "@/components/sections/new/ContactForm";
 import PhoneLink from "@/components/sections/new/PhoneLink";
+import BookingEmbed from "@/components/sections/new/BookingEmbed";
 import styles from "@/components/sections/new/ContactPage.module.css";
 
 export const metadata = {
@@ -55,6 +56,7 @@ export default function Contact() {
           </aside>
         </div>
       </section>
+      <BookingEmbed />
     </PageShell>
   );
 }
