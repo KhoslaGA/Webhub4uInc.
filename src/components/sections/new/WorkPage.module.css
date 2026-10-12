@@ -11,6 +11,16 @@
 .featStats { display: flex; gap: 44px; flex-wrap: wrap; border-top: 1px solid var(--wh-border-dark); padding-top: 28px; }
 .featStats strong { display: block; font-family: var(--wh-font-display); font-size: 1.8rem; color: var(--wh-text-inv); }
 .featStats span { font-size: 0.82rem; color: var(--wh-text-inv-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.second {
+  display: block; margin-top: 22px; text-decoration: none;
+  background: var(--wh-bg-soft); border: 1px solid var(--wh-border);
+  border-radius: var(--wh-radius-lg); padding: clamp(30px,4.5vw,52px);
+  transition: border-color 200ms var(--wh-ease), transform 200ms var(--wh-ease);
+}
+.second:hover { border-color: var(--wh-accent); transform: translateY(-3px); }
+.secondTitle { font-size: clamp(1.6rem,3.4vw,2.5rem); color: var(--wh-text); margin: 12px 0 14px; }
+.secondText { color: var(--wh-text-muted); line-height: 1.75; max-width: 62ch; margin: 0 0 22px; font-size: 1.02rem; }
+.secondCta { font-weight: 600; color: var(--wh-accent-ink); }
 .soon { text-align: center; padding: clamp(50px,8vh,90px) 20px 20px; }
 .soon h3 { font-family: var(--wh-font-display); font-size: clamp(1.5rem,3vw,2.2rem); margin: 0 0 16px; color: var(--wh-text); }
 .soon p { color: var(--wh-text-muted); line-height: 1.7; max-width: 52ch; margin: 0 auto 28px; }

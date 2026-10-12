@@ -38,6 +38,18 @@ export default function Projects() {
               <div><strong>AI-native</strong><span>Built-in tooling</span></div>
             </div>
           </div>
+          <Link href="/projects/rate-family" className={styles.second}>
+            <span className={styles.tag}>Case study 02</span>
+            <h2 className={`wh-display ${styles.secondTitle}`}>
+              The Rate Family — four brands, one codebase
+            </h2>
+            <p className={styles.secondText}>
+              Four Canadian insurance and mortgage education sites we built and
+              run on a single Next.js + Sanity platform, with AI agents doing
+              the routine work and a person approving everything that ships.
+            </p>
+            <span className={styles.secondCta}>Read the case study →</span>
+          </Link>
           <div className={styles.soon}>
             <h3>Client case studies — coming soon</h3>
             <p>

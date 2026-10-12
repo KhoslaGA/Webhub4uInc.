@@ -12,6 +12,7 @@ export default function sitemap() {
     { path: "/locations", priority: 0.8, changeFrequency: "monthly" },
     { path: "/roi", priority: 0.6, changeFrequency: "monthly" },
     { path: "/projects", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/projects/rate-family", priority: 0.7, changeFrequency: "monthly" },
     { path: "/about", priority: 0.7, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
     { path: "/blogs", priority: 0.7, changeFrequency: "weekly" },
