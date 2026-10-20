@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "@/components/sections/new/AboutPage.module.css";
 
 export const metadata = {
+  alternates: { canonical: "/about" },
   title: "About | Webhub4U — Web Design & AI Agency in Brampton",
   description:
     "Webhub4U is a Brampton-based digital studio building websites, local SEO, and AI tools for GTA businesses. Meet the team and how we work.",

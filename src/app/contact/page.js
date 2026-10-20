@@ -6,6 +6,7 @@ import BookingEmbed from "@/components/sections/new/BookingEmbed";
 import styles from "@/components/sections/new/ContactPage.module.css";
 
 export const metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact | Webhub4U — Web Design & AI in the GTA",
   description:
     "Book a free 20-minute consult with Webhub4U. Websites, local SEO, and AI tools for businesses across Brampton, Mississauga, Toronto, and the GTA.",

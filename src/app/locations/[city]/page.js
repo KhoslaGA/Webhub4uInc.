@@ -24,7 +24,7 @@ export function generateMetadata({ params }) {
     openGraph: {
       title: `Web Design & AI for ${city.name} Businesses — Webhub4U`,
       description: city.metaDescription,
-      url: `https://webhub4u.com/locations/${city.slug}`,
+      url: `https://www.webhub4u.com/locations/${city.slug}`,
       type: "website",
     },
   };

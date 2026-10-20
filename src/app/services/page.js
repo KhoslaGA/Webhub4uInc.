@@ -5,6 +5,7 @@ import CtaNew from "@/components/sections/new/CtaNew";
 import styles from "@/components/sections/new/ServicesPage.module.css";
 
 export const metadata = {
+  alternates: { canonical: "/services" },
   title: "Services | Web Design, Local SEO & AI Tools — Webhub4U",
   description:
     "Websites, local SEO, AI receptionists, chatbots, and automation for GTA businesses. See what Webhub4U builds and how each service helps you win.",

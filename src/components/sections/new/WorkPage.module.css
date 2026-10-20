@@ -6,6 +6,7 @@
   box-shadow: 0 30px 70px rgba(14,17,23,0.14);
 }
 .tag { color: var(--wh-accent); font-family: var(--wh-font-display); font-style: italic; font-size: 1.05rem; }
+.featured .tag { color: var(--wh-accent-2); }
 .featTitle { font-size: clamp(1.8rem,4vw,3rem); color: var(--wh-text-inv); margin: 12px 0 18px; }
 .featText { color: var(--wh-text-inv-muted); line-height: 1.75; max-width: 60ch; margin: 0 0 34px; font-size: 1.05rem; }
 .featStats { display: flex; gap: 44px; flex-wrap: wrap; border-top: 1px solid var(--wh-border-dark); padding-top: 28px; }

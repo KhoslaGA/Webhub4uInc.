@@ -22,7 +22,7 @@ export const metadata = {
     title: "Never Miss Another Call — AI Receptionist by Webhub4U",
     description:
       "Answers, texts back, and books appointments 24/7 so you never lose a job to voicemail.",
-    url: "https://webhub4u.com/ai-receptionist",
+    url: "https://www.webhub4u.com/ai-receptionist",
     type: "website",
   },
 };

@@ -1,3 +1,4 @@
+import { BUSINESS } from "@/lib/business";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "./theme.css";
@@ -12,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://webhub4u.com"),
+  metadataBase: new URL(BUSINESS.url),
   title: "Webhub4U — Web Design & AI Solutions Agency in the GTA",
   description:
     "Webhub4U is a Brampton-based digital agency building high-performance websites, local SEO, and AI-powered tools — chatbots, AI receptionists, and automation — for businesses across the Greater Toronto Area.",
@@ -20,7 +21,7 @@ export const metadata = {
     title: "Webhub4U — Web Design & AI Solutions Agency in the GTA",
     description:
       "High-performance websites, local SEO, and AI-powered tools for GTA businesses.",
-    url: "https://webhub4u.com",
+    url: BUSINESS.url,
     siteName: "Webhub4U",
     locale: "en_CA",
     type: "website",

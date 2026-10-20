@@ -20,7 +20,7 @@ export const metadata = {
       "Turn missed calls into booked jobs with an automatic text-back. From $" +
       monthly +
       "/mo.",
-    url: "https://webhub4u.com/missed-call-text-back",
+    url: "https://www.webhub4u.com/missed-call-text-back",
     type: "website",
   },
 };

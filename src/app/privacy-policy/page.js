@@ -3,6 +3,7 @@ import PageHero from "@/components/sections/new/PageHero";
 import styles from "@/components/sections/new/LegalPage.module.css";
 
 export const metadata = {
+  alternates: { canonical: "/privacy-policy" },
   title: "Privacy Policy | Webhub4U",
   description: "How Webhub4U collects, uses, and protects your information.",
 };
