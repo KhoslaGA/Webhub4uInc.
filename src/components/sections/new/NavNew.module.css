@@ -80,6 +80,8 @@
     gap: 4px;
     background: var(--wh-bg-dark);
     padding: 18px var(--wh-gutter) 28px;
+    visibility: hidden;
+    pointer-events: none;
     transform: translateY(-140%);
     transition: transform 350ms var(--wh-ease);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -90,6 +92,8 @@
     width: 100%;
   }
   .linksOpen {
+    visibility: visible;
+    pointer-events: auto;
     transform: translateY(0);
   }
   .navCta {

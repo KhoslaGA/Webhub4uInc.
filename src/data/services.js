@@ -45,7 +45,7 @@ export const SERVICES = [
   {
     slug: "web-design",
     name: "Web Design & Development",
-    href: "/services",
+    href: "/services/web-development",
     tag: "Web",
     short:
       "Fast, modern, mobile-first websites built to turn visitors into calls and bookings.",
@@ -63,7 +63,7 @@ export const SERVICES = [
   {
     slug: "local-seo",
     name: "Local SEO",
-    href: "/services",
+    href: "/services/seo",
     tag: "Growth",
     short:
       "Get found in the map pack and local search with a plan that actually moves rankings.",
@@ -81,7 +81,7 @@ export const SERVICES = [
   {
     slug: "google-business-profile",
     name: "Google Business Profile",
-    href: "/services",
+    href: "/services/seo",
     tag: "Growth",
     short:
       "A fully optimized, actively managed Google profile — the #1 local ranking lever.",

@@ -1,41 +1,17 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import AITerminal from "./AITerminal";
 import LogoGlobe from "./LogoGlobe";
 import styles from "./HeroNew.module.css";
 
-const ROTATING = [
-  "websites that win local search",
-  "AI receptionists that never miss a call",
-  "chatbots that book appointments",
-  "brands that look established",
-];
-
-const HeroNew = () => {
-  const [idx, setIdx] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const [mounted, setMounted] = useState(false);
-
+const HeroNew = ({ services }) => {
   const heroRef = useRef(null);
   const bgRef = useRef(null);
   const leftColRef = useRef(null);
   const rightColRef = useRef(null);
   const globeRef = useRef(null);
-
-  useEffect(() => {
-    setMounted(true);
-    const t = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setIdx((i) => (i + 1) % ROTATING.length);
-        setVisible(true);
-      }, 350);
-    }, 3200);
-    return () => clearInterval(t);
-  }, []);
 
   // Scroll choreography: pin the hero briefly and parallax its layers at
   // different depths while the canvas camera dives through the particle field.
@@ -62,7 +38,7 @@ const HeroNew = () => {
       // Depth layers, slowest (deepest) → fastest (closest):
       // background sinks & dims as the camera pushes past it…
       tl.to(bgRef.current, { yPercent: 12, opacity: 0.3, ease: "none" }, 0);
-      // …the terminal recedes into the mid-ground…
+      // …the service panel recedes into the mid-ground…
       tl.to(
         rightColRef.current,
         { yPercent: -18, scale: 0.94, opacity: 0.1, ease: "none" },
@@ -97,52 +73,47 @@ const HeroNew = () => {
       <div className={`wh-inner ${styles.inner}`}>
         <div className={styles.leftCol} ref={leftColRef}>
         <div
-          className={`${styles.left} ${mounted ? styles.leftIn : ""}`}
+          className={styles.left}
         >
           <p className={`wh-eyebrow ${styles.eyebrow}`}>
-            Digital &amp; AI agency · Brampton &amp; the GTA
+            Web development · SEO · Custom software
           </p>
           <h1 className={`wh-display ${styles.title}`}>
-            We build <span className="wh-em">growth systems</span> for modern
-            businesses.
+            Built to work.
+            <span className="wh-em"> Made to grow.</span>
           </h1>
-          <p className={styles.rotatorLine}>
-            <span
-              className={`${styles.rotator} ${
-                visible ? styles.rotatorIn : styles.rotatorOut
-              }`}
-            >
-              {ROTATING[idx]}
-            </span>
-          </p>
           <p className={styles.sub}>
-            High-performance websites paired with AI tools that answer, book,
-            and follow up — so your business looks bigger and never misses a
-            lead.
+            Websites your customers can use. Search content they can find.
+            Software that helps your team get work done. Based in Brampton,
+            serving Toronto and the GTA.
           </p>
           <div className={styles.ctas}>
             <Link href="/contact" className="wh-btn wh-btn--primary">
-              Book an intro call
+              Discuss your project
             </Link>
             <Link href="/projects" className="wh-btn wh-btn--ghost-dark">
-              See our work
+              Explore our work
             </Link>
           </div>
           <ul className={styles.pillars}>
-            <li>Web design</li>
-            <li>AI receptionists</li>
-            <li>Local SEO</li>
-            <li>Automation</li>
+            <li>Design &amp; development</li>
+            <li>Search &amp; content</li>
+            <li>Business workflows</li>
           </ul>
         </div>
         </div>
         <div className={styles.rightCol} ref={rightColRef}>
-        <div className={`${styles.right} ${mounted ? styles.rightIn : ""}`}>
-          <AITerminal />
-          <p className={styles.termCaption}>
-            <span className="wh-em">Live demo</span> — this is the AI
-            receptionist we&apos;d set up for you.
-          </p>
+        <div className={styles.right}>
+          <div className={styles.servicePanel}>
+            <p className={styles.panelLabel}>Start with what needs to work better</p>
+            {services.map((service) => (
+              <Link key={service.slug} href={`/services/${service.slug}`} className={styles.serviceRow}>
+                <span><strong>{service.name}</strong><span>{service.question}</span></span>
+                <span aria-hidden="true">↗</span>
+              </Link>
+            ))}
+            <p className={styles.panelNote}>Explore the approach, scope and relevant work.</p>
+          </div>
         </div>
         </div>
       </div>

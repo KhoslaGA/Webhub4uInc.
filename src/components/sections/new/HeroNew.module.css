@@ -76,8 +76,8 @@
 }
 .left { }
 .left, .right {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: none;
 }
 .leftIn {
   opacity: 1;
@@ -162,3 +162,16 @@
 @media (prefers-reduced-motion: reduce) {
   .right > :global(div) { animation: none; }
 }
+
+.hero :global(.wh-em) { color: var(--wh-accent-2); }
+.servicePanel { border: 1px solid var(--wh-border-azure); border-radius: 22px; padding: 28px; background: rgba(20, 25, 39, .95); }
+.panelLabel { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: #b9c4d3; margin: 0 0 22px; line-height: 1.8; }
+.serviceRow { display: flex; gap: 18px; justify-content: space-between; padding: 24px 0; border-top: 1px solid var(--wh-border-dark); color: white; text-decoration: none; }
+.serviceRow strong { display: block; font-size: 1.14rem; font-weight: 550; margin-bottom: 8px; }
+.serviceRow span span { display: block; color: #b9c4d3; font-size: .85rem; line-height: 1.6; }
+.serviceRow > span:last-child { color: var(--wh-accent-2); }
+.serviceRow:hover strong { color: var(--wh-accent-2); }
+.serviceRow:focus-visible { outline: 3px solid var(--wh-accent-2); outline-offset: 5px; }
+.panelNote { color: #b9c4d3; font-size: .75rem; line-height: 1.7; margin: 8px 0 0; }
+.right > .servicePanel { animation: none; }
+@media (prefers-reduced-motion: reduce) { .glow { animation: none; } }

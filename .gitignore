@@ -47,3 +47,7 @@ Thumbs.db
 *.pid
 *.seed
 *.pid.lock
+
+# Generated SEO reports and Python cache
+/reports/
+__pycache__/

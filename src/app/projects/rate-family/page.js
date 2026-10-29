@@ -7,17 +7,16 @@ import { breadcrumbLd } from "@/lib/schema";
 import styles from "@/components/sections/new/CaseStudy.module.css";
 
 export const metadata = {
-  title: "Rate Family Case Study: 4 Sites, 1 Codebase | Webhub4U",
+  title: "RateFamily: Web Development & SEO Case Study | Webhub4U",
   description:
-    "How Webhub4U built and runs four Canadian insurance and mortgage education sites on one Next.js + Sanity platform, with AI agents and human sign-off gates.",
+    "Explore RateFamily: four Canadian education brands, shared web development and technical SEO foundations. Learn about the platform and its development status.",
   alternates: { canonical: "/projects/rate-family" },
 };
 
 /*
- * Every figure on this page is a STRUCTURAL fact taken from the Rate Family
- * repository (site config, CMS schema, scripts, CLAUDE.md) — not traffic,
- * revenue or ranking claims. Add outcome metrics only once they're measured
- * and shareable, with the source and date.
+ * Scope reviewed on 2026-10-20 against public brand sites and the V2 README.
+ * Public education sites and mock-data V2 are explicitly distinguished.
+ * Add outcome metrics only with a dated, shareable measurement source.
  */
 
 const SITES = [
@@ -30,39 +29,35 @@ const SITES = [
 const BUILT = [
   {
     t: "One app, four sites",
-    d: "Middleware reads the incoming domain and resolves which brand to serve. Each site gets its own design system, fonts and navigation — all from a single Next.js codebase.",
+    d: "The shared V2 codebase supports four brand identities through host-based theming, with separate visual styles and navigation for each brand.",
   },
   {
-    t: "One CMS, separate brands",
-    d: "A shared Sanity content model — posts, glossary terms, city pages, research briefings, authors and more — with every document scoped to the site it belongs to.",
+    t: "Shared contracts, distinct brands",
+    d: "The V2 codebase separates its frontend, backend and shared contracts. A shared API client connects each brand to deterministic development data.",
   },
   {
     t: "Search plumbing for a multi-domain network",
-    d: "A canonical ownership map so the four domains never compete as duplicates, per-site sitemaps, and an IndexNow ping to Bing on every production deploy.",
+    d: "Our search work covers metadata, canonical ownership, sitemaps and links between relevant pages. These foundations need ongoing checks and measurement as the network evolves.",
   },
   {
     t: "Guardrails written as code",
-    d: "Automated checks scan the codebase and content for unsupported claims, compensation-claim wording, canonical conflicts, wrong-host sitemap entries and stray noindex tags.",
+    d: "The V2 development environment explicitly marks quote and card fixtures as mock data. Tests and shared contracts help keep those fixtures distinct from live offers.",
   },
 ];
 
 const GATES = [
-  "Nothing publishes without a person signing off on that specific document — agent edits land as drafts.",
-  "Expert-review signatures on financial content are human-only. Agents never set them.",
-  "Every link is checked against a live target before it ships.",
-  "CMS schema changes deploy only through the command line, on the operator's timing.",
-  "No invented figures, dates or sources — a number needs a named, dated source.",
+  "The public education websites and V2 development environment have distinct roles.",
+  "V2 quote and card data are mock fixtures, not live offers.",
+  "The V2 application does not provide a live purchase or bind service.",
+  "Measured search and enquiry outcomes will be reported with dates and sources.",
 ];
 
 const NUMBERS = [
-  { n: "4", l: "brand sites" },
-  { n: "1", l: "shared codebase" },
-  { n: "120+", l: "page routes" },
-  { n: "9", l: "CMS content types" },
-  { n: "20", l: "automated content & code checks" },
+  { n: "4", l: "public education brands" },
+  { n: "1", l: "shared V2 codebase" },
 ];
 
-const STACK = ["Next.js (App Router)", "React", "TypeScript", "Tailwind CSS v4", "Sanity CMS", "Vercel"];
+const STACK = ["Next.js", "React", "TypeScript", "NestJS (V2)", "Shared API contracts"];
 
 const FOR_YOU = [
   {
@@ -71,11 +66,11 @@ const FOR_YOU = [
   },
   {
     t: "Trust-sensitive industry?",
-    d: "Health, finance, legal, trades: the guardrails-as-code pattern catches risky claims before they go live, not after a complaint.",
+    d: "Health, finance, legal, trades: source records and human review belong in the publishing workflow. Automated checks support that review; they do not guarantee accuracy.",
   },
   {
     t: "Small team, big workload?",
-    d: "AI agents handle the repetitive work; a person reviews and approves everything that ships. More output without giving up control.",
+    d: "Shared components and contracts can reduce repeated implementation work. Editorial and automation workflows should keep explicit review steps.",
   },
 ];
 
@@ -97,7 +92,7 @@ export default function RateFamilyCaseStudy() {
             The Rate Family: <span className="wh-em">four brands, one codebase.</span>
           </>
         }
-        sub="A network of four Canadian insurance and mortgage education sites — built, run and maintained by Webhub4U on a single platform, with AI agents doing the routine work and a person signing off on everything that ships."
+        sub="A network of four Canadian insurance and mortgage education sites — built, run and maintained by Webhub4U on a single platform, with distinct brand identities, shared development patterns and an ongoing search programme."
       />
 
       {/* ---------- CHALLENGE ---------- */}
@@ -106,7 +101,7 @@ export default function RateFamilyCaseStudy() {
           <div>
             <p className="wh-eyebrow">The challenge</p>
             <h2 className={`wh-display ${styles.h2}`}>
-              Four identities, <span className="wh-em">zero duplication.</span>
+              Four identities, <span className="wh-em">one foundation.</span>
             </h2>
           </div>
           <div className={styles.prose}>
@@ -129,7 +124,7 @@ export default function RateFamilyCaseStudy() {
         <div className="wh-inner">
           <p className="wh-eyebrow">What we built</p>
           <h2 className={`wh-display ${styles.h2}`}>
-            A platform, <span className="wh-em">not four websites.</span>
+            A shared platform for <span className="wh-em">four brands.</span>
           </h2>
           <div className={styles.grid2}>
             {BUILT.map((b) => (
@@ -142,6 +137,25 @@ export default function RateFamilyCaseStudy() {
         </div>
       </section>
 
+      <section className={`wh ${styles.light}`}>
+        <div className="wh-inner">
+          <p className="wh-eyebrow">SEO work</p>
+          <h2 className={`wh-display ${styles.h2}`}>
+            Give useful content <span className="wh-em">a clear structure.</span>
+          </h2>
+          <div className={styles.grid2}>
+            <article className={styles.card}>
+              <h3>Content architecture</h3>
+              <p>The public network groups educational guides by topic and audience, connecting relevant guides, calculators and specialist brands.</p>
+            </article>
+            <article className={styles.card}>
+              <h3>Measurement comes next</h3>
+              <p>Search Console impressions, non-brand clicks and qualified enquiries will establish the baseline. This case study does not yet report a ranking or traffic increase.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* ---------- HOW IT RUNS ---------- */}
       <section className={`wh ${styles.dark}`}>
         <div className={styles.glow} aria-hidden="true" />
@@ -149,12 +163,11 @@ export default function RateFamilyCaseStudy() {
           <div>
             <p className={`wh-eyebrow ${styles.eyebrowInv}`}>How it runs</p>
             <h2 className={`wh-display ${styles.h2Inv}`}>
-              AI agents do the work. <span className="wh-em">A person approves it.</span>
+              Public websites. <span className="wh-em">An evolving product.</span>
             </h2>
             <p className={styles.proseInv}>
-              Nightly AI agents work the network under a written rulebook that
-              lives in the repository itself. These are the rules that keep it
-              safe:
+              The public education network is live. Its V2 application is a
+              development environment with explicit limits:
             </p>
           </div>
           <ul className={styles.gates}>
@@ -181,9 +194,9 @@ export default function RateFamilyCaseStudy() {
             ))}
           </div>
           <p className={styles.note}>
-            Structural facts from the codebase — not vanity metrics. Traffic
-            and conversion results will be added here once they&apos;re
-            measured and shareable.
+            The four public brands and shared V2 codebase describe the scope
+            of the work. Traffic, ranking and enquiry outcomes will be added
+            once they are measured and shareable.
           </p>
           <div className={styles.stack}>
             {STACK.map((s) => (
@@ -234,9 +247,10 @@ export default function RateFamilyCaseStudy() {
             ))}
           </div>
           <div className={styles.ctaRow}>
-            <Link href="/contact" className="wh-btn wh-btn--primary">
-              Start a project
+            <Link href="/services/web-development" className="wh-btn wh-btn--primary">
+              Explore web development
             </Link>
+            <Link href="/services/seo" className={styles.back}>Explore SEO services ↗</Link>
             <Link href="/projects" className={styles.back}>
               ← All work
             </Link>

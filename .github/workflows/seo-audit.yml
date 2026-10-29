@@ -1,0 +1,35 @@
+name: Weekly SEO audit
+
+# Scheduled runs begin only after this file is merged into the default branch.
+# Read-only: no CMS writes, deploys, paid APIs or outbound messages.
+on:
+  schedule:
+    - cron: '17 11 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seo-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Audit public sitemap pages
+        run: python scripts/seo_audit.py
+      - name: Save audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-audit
+          path: reports/seo-audit.json
+          retention-days: 30
+          if-no-files-found: error

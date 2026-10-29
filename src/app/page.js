@@ -1,6 +1,9 @@
+import { SERVICE_PAGES } from "@/data/servicePages";
+import JsonLd from "@/components/seo/JsonLd";
+import { localBusinessLd } from "@/lib/schema";
 import NavNew from "@/components/sections/new/NavNew";
 import HeroNew from "@/components/sections/new/HeroNew";
-import TrustStrip from "@/components/sections/new/TrustStrip";
+import FeaturedWork from "@/components/sections/new/FeaturedWork";
 import ServicesNew from "@/components/sections/new/ServicesNew";
 import AIShowcaseNew from "@/components/sections/new/AIShowcaseNew";
 import ProcessNew from "@/components/sections/new/ProcessNew";
@@ -12,18 +15,20 @@ import CtaNew from "@/components/sections/new/CtaNew";
 import FooterNew from "@/components/sections/new/FooterNew";
 
 export const metadata = {
-  title: "Webhub4U — Web Design & AI Solutions Agency in the GTA",
+  alternates: { canonical: "/" },
+  title: "Toronto GTA Web Development & SEO Agency | Webhub4U",
   description:
-    "High-performance websites, local SEO, and AI-powered tools — chatbots, AI receptionists, and automation — for businesses across Brampton, Mississauga, Toronto, and the GTA. Transparent packages from $997.",
+    "Web development, local SEO and custom software for businesses in Toronto and the GTA. Explore Webhub4U's RateFamily platform and Insurimple software project.",
 };
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={localBusinessLd()} />
       <NavNew />
       <main>
-        <HeroNew />
-        <TrustStrip />
+        <HeroNew services={SERVICE_PAGES.map(({ slug, name, question }) => ({ slug, name, question }))} />
+        <FeaturedWork />
         <ServicesNew />
         <AIShowcaseNew />
         <ProcessNew />
