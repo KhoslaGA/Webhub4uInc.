@@ -60,6 +60,11 @@
   font-size: 0.9rem;
   margin: 0;
 }
+.err a {
+  color: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+}
 .success {
   text-align: center;
   padding: 40px 20px;

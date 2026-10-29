@@ -32,8 +32,8 @@ jobs:
       # package.json. Commit lockfile changes from `npm install`.
       - run: npm ci --no-audit --no-fund
 
-      - name: Verify enquiry delivery and validation
-        run: node --test scripts/test_contact.mjs
+      - name: Verify enquiry and demo-request delivery and validation
+        run: node --test scripts/test_contact.mjs scripts/test_demo_request.mjs
 
       # next build also runs lint + type checks.
       - run: npm run build

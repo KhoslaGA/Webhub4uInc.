@@ -1,18 +1,11 @@
 "use client";
 import { useState } from "react";
 import { track, trackConversion } from "@/lib/analytics";
+import { BUSINESS, telHref } from "@/lib/business";
+import { VERTICALS, TIMES } from "@/lib/demoOptions.mjs";
 import styles from "./DemoRequestForm.module.css";
 
-const VERTICALS = [
-  "Trades / home services",
-  "Clinic / health",
-  "Professional services",
-  "Restaurant / hospitality",
-  "Retail / shop",
-  "Other",
-];
-
-const TIMES = ["Anytime", "Morning", "Afternoon", "Evening"];
+const FALLBACK_ERROR = "We couldn't send your request. Your details are still in the form; please try again, or call or email us directly.";
 
 const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
   const [form, setForm] = useState({
@@ -25,40 +18,42 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
     message: "",
   });
   const [status, setStatus] = useState("idle"); // idle | sending | ok | error
+  const [error, setError] = useState("");
 
   const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
   const submit = async (e) => {
     e.preventDefault();
     setStatus("sending");
+    setError("");
     try {
       const res = await fetch("/api/demo-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, source }),
       });
-      if (res.ok) {
-        setStatus("ok");
-        track("demo_request", { vertical: form.vertical, source });
-        trackConversion("Lead", {
-          params: { vertical: form.vertical, source },
-          user: {
-            name: form.name,
-            phone: form.phone,
-            email: form.email,
-          },
-        });
-      } else {
-        setStatus("error");
-      }
-    } catch {
+      const result = await res.json().catch(() => ({}));
+      // Only an explicit acceptance from the API counts as success.
+      if (!res.ok || result.ok !== true) throw new Error(result.error || FALLBACK_ERROR);
+      setStatus("ok");
+      track("demo_request", { vertical: form.vertical, source });
+      trackConversion("Lead", {
+        params: { vertical: form.vertical, source },
+        user: {
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+        },
+      });
+    } catch (err) {
+      setError(err.message || FALLBACK_ERROR);
       setStatus("error");
     }
   };
 
   if (status === "ok") {
     return (
-      <div className={`wh ${styles.success}`}>
+      <div className={`wh ${styles.success}`} role="status">
         <p className={styles.successIcon}>✓</p>
         <h3>You&apos;re in, {form.name.split(" ")[0] || "there"}.</h3>
         <p>
@@ -74,12 +69,14 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
   }
 
   return (
-    <form className={`wh ${styles.form}`} onSubmit={submit}>
+    <form className={`wh ${styles.form}`} onSubmit={submit} aria-describedby={status === "error" ? "demo-request-error" : undefined}>
       <div className={styles.row}>
         <label>
           Name
           <input
             required
+            maxLength={120}
+            autoComplete="name"
             value={form.name}
             onChange={update("name")}
             placeholder="Your name"
@@ -88,6 +85,8 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
         <label>
           Business
           <input
+            maxLength={200}
+            autoComplete="organization"
             value={form.business}
             onChange={update("business")}
             placeholder="Business name"
@@ -100,6 +99,8 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
           <input
             required
             type="tel"
+            maxLength={40}
+            autoComplete="tel"
             value={form.phone}
             onChange={update("phone")}
             placeholder="(555) 555-5555"
@@ -109,6 +110,8 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
           Email <span className={styles.optional}>(optional)</span>
           <input
             type="email"
+            maxLength={254}
+            autoComplete="email"
             value={form.email}
             onChange={update("email")}
             placeholder="you@business.com"
@@ -137,6 +140,7 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
         Anything we should know? <span className={styles.optional}>(optional)</span>
         <textarea
           rows={3}
+          maxLength={3000}
           value={form.message}
           onChange={update("message")}
           placeholder="e.g. we miss a lot of after-hours calls, or we already use a booking tool"
@@ -150,8 +154,11 @@ const DemoRequestForm = ({ source = "webhub4u.com/ai-receptionist" }) => {
         {status === "sending" ? "Sending…" : "Get my live demo"}
       </button>
       {status === "error" && (
-        <p className={styles.err}>
-          Something went wrong. Please email us at webhub4u@gmail.com.
+        <p id="demo-request-error" className={styles.err} role="alert">
+          {error}{" "}
+          <a href={telHref(BUSINESS.phone)}>{BUSINESS.phone}</a>
+          {" · "}
+          <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
         </p>
       )}
     </form>
