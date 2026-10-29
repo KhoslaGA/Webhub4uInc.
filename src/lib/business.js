@@ -17,7 +17,7 @@ export const BUSINESS = {
   region: "ON",
   country: "CA",
   areaServed: "Greater Toronto Area",
-  url: "https://webhub4u.com",
+  url: "https://www.webhub4u.com",
 };
 
 /** Offer pricing (D1). Adjust to the live offer stack. */

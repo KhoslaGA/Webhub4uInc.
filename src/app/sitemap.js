@@ -1,8 +1,10 @@
+import { SERVICE_PAGES, servicePath } from "@/data/servicePages";
+import { BUSINESS } from "@/lib/business";
 import { LOCATIONS } from "@/data/locations";
 import { getAllPosts } from "@/lib/blog";
 
 export default function sitemap() {
-  const base = "https://webhub4u.com";
+  const base = BUSINESS.url;
   const routes = [
     { path: "", priority: 1.0, changeFrequency: "weekly" },
     { path: "/ai-receptionist", priority: 0.9, changeFrequency: "weekly" },
@@ -12,6 +14,8 @@ export default function sitemap() {
     { path: "/locations", priority: 0.8, changeFrequency: "monthly" },
     { path: "/roi", priority: 0.6, changeFrequency: "monthly" },
     { path: "/projects", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/projects/insurimple", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/projects/rate-family", priority: 0.7, changeFrequency: "monthly" },
     { path: "/about", priority: 0.7, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
     { path: "/blogs", priority: 0.7, changeFrequency: "weekly" },
@@ -27,12 +31,14 @@ export default function sitemap() {
     path: `/blogs/${p.slug}`,
     priority: 0.6,
     changeFrequency: "monthly",
-    lastModified: p.date ? new Date(p.date) : new Date(),
+    ...(p.date ? { lastModified: new Date(p.date) } : {}),
   }));
 
-  return [...routes, ...cityRoutes, ...postRoutes].map((r) => ({
+  const serviceRoutes = SERVICE_PAGES.map((service) => ({ path: servicePath(service), priority: 0.8, changeFrequency: "monthly" }));
+
+  return [...routes, ...serviceRoutes, ...cityRoutes, ...postRoutes].map((r) => ({
     url: `${base}${r.path}`,
-    lastModified: r.lastModified || new Date(),
+    ...(r.lastModified ? { lastModified: r.lastModified } : {}),
     changeFrequency: r.changeFrequency,
     priority: r.priority,
   }));

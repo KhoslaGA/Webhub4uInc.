@@ -1,68 +1,32 @@
+import Link from "next/link";
 import PageShell from "@/components/sections/new/PageShell";
 import PageHero from "@/components/sections/new/PageHero";
-import PricingNew from "@/components/sections/new/PricingNew";
-import CtaNew from "@/components/sections/new/CtaNew";
+import ServicesNew from "@/components/sections/new/ServicesNew";
 import styles from "@/components/sections/new/ServicesPage.module.css";
 
 export const metadata = {
-  title: "Services | Web Design, Local SEO & AI Tools — Webhub4U",
-  description:
-    "Websites, local SEO, AI receptionists, chatbots, and automation for GTA businesses. See what Webhub4U builds and how each service helps you win.",
+  alternates: { canonical: "/services" },
+  title: "Web Development, SEO & Custom Software | Webhub4U",
+  description: "Explore Webhub4U's web development, SEO and custom software services for Toronto and GTA businesses. Start with your website, customers or business workflow.",
 };
-
-const GROUPS = [
-  {
-    label: "Web",
-    items: [
-      { t: "Web Design & Development", d: "Fast, modern, mobile-first websites built to convert. Custom-coded on a modern stack — not a bloated template." },
-      { t: "E-Commerce", d: "Shopify or custom online stores with products, payments, and shipping configured properly." },
-      { t: "Branding & Identity", d: "Logos, colour, and messaging that make a small business look established and trustworthy." },
-    ],
-  },
-  {
-    label: "AI",
-    items: [
-      { t: "AI Receptionist", d: "Answers after-hours calls, texts back missed ones, and books appointments — so you never lose a job to voicemail." },
-      { t: "AI Chat Assistant", d: "A website assistant trained on your business that answers questions and captures leads 24/7." },
-      { t: "Business Automation", d: "Quotes, invoices, follow-ups, and CRM updates that run themselves via AI-powered workflows." },
-    ],
-  },
-  {
-    label: "Growth",
-    items: [
-      { t: "Local SEO", d: "Google Business Profile optimization, city landing pages, and a reviews strategy that gets you found." },
-      { t: "Care Plans & Hosting", d: "Updates, backups, security, and monthly edits so your site stays fast, safe, and current." },
-    ],
-  },
-];
 
 export default function Services() {
   return (
     <PageShell>
-      <PageHero
-        eyebrow="Services"
-        title={<>Everything you need to <span className="wh-em">win online.</span></>}
-        sub="From your first website to AI tools that work while you sleep — here's what we build, and why each piece earns its place."
-      />
+      <PageHero eyebrow="Services · Toronto & GTA" title={<>Start with what needs to <span className="wh-em">work better.</span></>} sub="A clearer website, useful search content or a tool for your team. Choose the problem you want to solve, and explore how we can help." />
+      <ServicesNew />
       <section className={`wh ${styles.wrap}`}>
         <div className="wh-inner">
-          {GROUPS.map((g) => (
-            <div key={g.label} className={styles.group}>
-              <p className={`wh-eyebrow ${styles.groupLabel}`}>{g.label}</p>
-              <div className={styles.items}>
-                {g.items.map((it) => (
-                  <div key={it.t} className={styles.item}>
-                    <h3>{it.t}</h3>
-                    <p>{it.d}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+          <p className="wh-eyebrow">Connected tools</p>
+          <h2 className={`wh-display ${styles.heading}`}>Support the work <span className="wh-em">around your website.</span></h2>
+          <div className={styles.items}>
+            <article className={styles.item}><h3>AI receptionist</h3><p>Explore call-handling and appointment workflows, with business information and handoff rules reviewed before launch.</p><Link href="/ai-receptionist">Explore AI receptionists ↗</Link></article>
+            <article className={styles.item}><h3>Missed-call text-back</h3><p>Connect missed calls with a follow-up message and a clear next step for the customer and your team.</p><Link href="/missed-call-text-back">Explore text-back workflows ↗</Link></article>
+            <article className={styles.item}><h3>Website packages and support</h3><p>Review standard website packages. Custom software, complex integrations and migrations receive a separate scope.</p><Link href="/#pricing">View website packages ↗</Link></article>
+          </div>
+          <div className={styles.brief}><h2>Bring us a useful starting point.</h2><p>Your current website, one customer question or one process your team repeats. We’ll discuss the users, tools, content and dependencies before agreeing the work.</p><Link href="/contact" className="wh-btn wh-btn--primary">Discuss your project</Link></div>
         </div>
       </section>
-      <PricingNew />
-      <CtaNew />
     </PageShell>
   );
 }

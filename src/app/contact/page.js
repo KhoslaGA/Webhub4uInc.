@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import ContactFormFromUrl from "@/components/sections/new/ContactFormFromUrl";
 import PageShell from "@/components/sections/new/PageShell";
 import PageHero from "@/components/sections/new/PageHero";
 import ContactForm from "@/components/sections/new/ContactForm";
@@ -6,9 +8,10 @@ import BookingEmbed from "@/components/sections/new/BookingEmbed";
 import styles from "@/components/sections/new/ContactPage.module.css";
 
 export const metadata = {
-  title: "Contact | Webhub4U — Web Design & AI in the GTA",
+  alternates: { canonical: "/contact" },
+  title: "Discuss Your Project | Webhub4U — Toronto & GTA",
   description:
-    "Book a free 20-minute consult with Webhub4U. Websites, local SEO, and AI tools for businesses across Brampton, Mississauga, Toronto, and the GTA.",
+    "Book a free 20-minute consult with Webhub4U. Web development, SEO and custom software for businesses across Brampton, Mississauga, Toronto, and the GTA.",
 };
 
 export default function Contact() {
@@ -27,7 +30,7 @@ export default function Contact() {
       <section className={`wh ${styles.wrap}`}>
         <div className={`wh-inner ${styles.grid}`}>
           <div className={styles.formCol}>
-            <ContactForm />
+            <Suspense fallback={<ContactForm />}><ContactFormFromUrl /></Suspense>
           </div>
           <aside className={styles.info}>
             <div className={styles.infoBlock}>

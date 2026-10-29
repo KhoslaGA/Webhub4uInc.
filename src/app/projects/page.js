@@ -5,9 +5,10 @@ import Link from "next/link";
 import styles from "@/components/sections/new/WorkPage.module.css";
 
 export const metadata = {
-  title: "Our Work | Webhub4U — GTA Web Design & AI Projects",
+  alternates: { canonical: "/projects" },
+  title: "Web Development, SEO & Software Portfolio | Webhub4U",
   description:
-    "A look at the websites and AI tools Webhub4U builds for businesses across the Greater Toronto Area.",
+    "Explore RateFamily's web development and SEO foundations, and the Insurimple Platform and BMS software engineering project. Built by Webhub4U in the GTA.",
 };
 
 export default function Projects() {
@@ -16,35 +17,39 @@ export default function Projects() {
       <PageHero
         eyebrow="Our work"
         title={<>Proof over <span className="wh-em">promises.</span></>}
-        sub="We're early and we'd rather show real work than fake logos. Here's where our portfolio stands — honestly."
+        sub="Explore our own products and platforms: the decisions behind the build, the work delivered and what comes next."
       />
       <section className={`wh ${styles.wrap}`}>
         <div className="wh-inner">
           <div className={styles.featured}>
-            <span className={styles.tag}>Case study 01</span>
+            <span className={styles.tag}>Owned platform · Web development & SEO</span>
             <h2 className={`wh-display ${styles.featTitle}`}>
-              Webhub4U.com — this website
+              RateFamily — four brands, one platform
             </h2>
             <p className={styles.featText}>
-              Our own site is our first case study. Custom-built on Next.js,
-              designed for speed and search, with the same AI tooling we offer
-              clients. Every claim on it is real — no placeholder stats, no
-              stock testimonials. If you like what you&apos;re looking at, this
-              is the standard we build to.
+              Four Canadian finance and insurance brands, a shared web platform
+              and distinct paths through educational content. Explore the
+              development approach and the search foundations behind the network.
             </p>
-            <div className={styles.featStats}>
-              <div><strong>Next.js</strong><span>Custom stack</span></div>
-              <div><strong>90+</strong><span>Performance target</span></div>
-              <div><strong>AI-native</strong><span>Built-in tooling</span></div>
-            </div>
+            <Link href="/projects/rate-family" className="wh-btn wh-btn--primary">Explore RateFamily</Link>
           </div>
+          <Link href="/projects/insurimple" className={styles.second}>
+            <span className={styles.tag}>Product in development · Custom software</span>
+            <h2 className={`wh-display ${styles.secondTitle}`}>
+              Insurimple Platform & BMS
+            </h2>
+            <p className={styles.secondText}>
+              Insurance operations software with separate platform and policy
+              systems. Explore tenant isolation, audited workflows and the
+              integration boundaries behind a complex business application.
+            </p>
+            <span className={styles.secondCta}>Explore the engineering →</span>
+          </Link>
           <div className={styles.soon}>
-            <h3>Client case studies — coming soon</h3>
+            <h3>Have a project with similar challenges?</h3>
             <p>
-              We&apos;re onboarding our first cohort of GTA clients now. As
-              projects launch, real case studies with real results will land
-              here — challenge, approach, and measurable outcome. Want to be
-              one of the first?
+              Tell us what your business needs to make possible. We can help
+              scope the website, search strategy or software behind it.
             </p>
             <Link href="/contact" className="wh-btn wh-btn--primary">
               Start a project

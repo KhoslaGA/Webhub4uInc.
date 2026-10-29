@@ -6,7 +6,7 @@ import styles from "./FAQNew.module.css";
 const FAQS = [
   {
     q: "How long does a website take?",
-    a: "Launch sites go live in about 2 weeks. Growth and Authority packages typically take 3–4 weeks, mostly depending on how quickly we get your content and feedback. We keep things moving with a simple checklist so nothing stalls.",
+    a: "Timing depends on scope, content, feedback and integrations. We confirm milestones after agreeing those inputs. Custom software and migrations are scoped separately from standard website packages.",
   },
   {
     q: "Do I own my website?",

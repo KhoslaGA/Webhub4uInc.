@@ -1,0 +1,57 @@
+name: CI
+
+# The merge gate for main. Every change — yours or Claude's — must build
+# cleanly before it can merge. Make the "build" job a required status check:
+#   Settings → Rules/Branches → main → Require status checks → "build".
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      # npm ci is strict: it fails if package-lock.json drifts from
+      # package.json. Commit lockfile changes from `npm install`.
+      - run: npm ci --no-audit --no-fund
+
+      - name: Verify enquiry delivery and validation
+        run: node --test scripts/test_contact.mjs
+
+      # next build also runs lint + type checks.
+      - run: npm run build
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Verify the SEO audit detects regressions
+        run: python -m unittest discover -s scripts -p 'test_*.py'
+
+      - name: Check rendered metadata on every sitemap page
+        run: python scripts/seo_audit.py --build-dir .next/server/app
+
+      - name: Keep the SEO report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-build-audit
+          path: reports/seo-audit.json
+          if-no-files-found: ignore

@@ -5,8 +5,8 @@ import Image from "next/image";
 import styles from "./NavNew.module.css";
 
 const LINKS = [
-  { label: "Services", href: "/#services" },
-  { label: "AI Solutions", href: "/#ai" },
+  { label: "Services", href: "/services" },
+  { label: "Our work", href: "/projects" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Process", href: "/#process" },
   { label: "FAQ", href: "/#faq" },
@@ -38,7 +38,7 @@ const NavNew = () => {
             className={styles.logoImg}
           />
         </Link>
-        <nav className={`${styles.links} ${open ? styles.linksOpen : ""}`}>
+        <nav id="primary-navigation" aria-label="Main navigation" className={`${styles.links} ${open ? styles.linksOpen : ""}`}>
           {LINKS.map((l) => (
             <Link key={l.label} href={l.href} onClick={() => setOpen(false)}>
               {l.label}
@@ -56,6 +56,7 @@ const NavNew = () => {
           className={styles.burger}
           aria-label="Toggle menu"
           aria-expanded={open}
+          aria-controls="primary-navigation"
           onClick={() => setOpen((o) => !o)}
         >
           <span />

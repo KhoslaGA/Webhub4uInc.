@@ -4,6 +4,7 @@ import FAQNew from "@/components/sections/new/FAQNew";
 import CtaNew from "@/components/sections/new/CtaNew";
 
 export const metadata = {
+  alternates: { canonical: "/faq" },
   title: "FAQ | Webhub4U — Web Design & AI Questions Answered",
   description:
     "Common questions about our websites, AI receptionists, chatbots, pricing, timelines, and ownership.",
