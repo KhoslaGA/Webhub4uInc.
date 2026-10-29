@@ -44,7 +44,8 @@ Style: alternate light and dark sections; ONE `.wh-em` accent per heading; restr
 - **City pages (`/locations/*`) must stay genuinely unique** — real neighbourhoods and local character, never a paragraph with the city name swapped. Don't bulk-generate city × service pages.
 - **Env-gated features stay dormant when unset** (analytics, CAPI, booking embed, GHL webhook, tracking phone). Never ship fake phone numbers or placeholder IDs.
 - **Client vs server:** `"use client"` only where state/effects/interactivity are needed. Keep pages as server components.
-- **Contact & lead APIs** (`/api/sendEmail`, `/api/demo-request`) must keep failing gracefully when keys are unset.
+- **Contact & lead APIs** (`/api/sendEmail`, `/api/demo-request`) must keep failing gracefully when keys are unset: 503 with a clear message, never a false success. Success means a provider accepted the lead (webhook 2xx, or a Resend id with no error); forms show success only on `ok: true`. Never log personal enquiry data. Tests: `scripts/test_contact.mjs`, `scripts/test_demo_request.mjs`.
+- **Case studies** state only what code, tests or dated measurements support, and keep production facts apart from in-development work. Record sources and commits in `docs/case-study-audit-*.md`; never publish private-repo internals (vendors, regions, credentials, table names).
 - **Brand assets** live in `public/` (`logo-nav-t.png` = transparent, for dark backgrounds).
 
 ## Workflow

@@ -1,8 +1,10 @@
 name: CI
 
-# The merge gate for main. Every change — yours or Claude's — must build
-# cleanly before it can merge. Make the "build" job a required status check:
-#   Settings → Rules/Branches → main → Require status checks → "build".
+# The "build" check for main. This file only RUNS the check; it enforces
+# nothing. Merges are gated only once a ruleset requires "build" on main:
+# import .github/rulesets/main.json under Settings → Rules → Rulesets →
+# New ruleset → Import a ruleset (requires pull requests + "build",
+# blocks force-push and deletion of main).
 on:
   pull_request:
   push:

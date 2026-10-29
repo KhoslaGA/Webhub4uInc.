@@ -1,9 +1,11 @@
 name: Claude Code
 
 # Mention @claude in an issue, PR comment or review and Claude will analyse
-# the code, make changes on a branch and push commits. It CANNOT approve or
-# merge — a person reviews and merges every change (enforced by branch
-# protection on main + the required "build" check from ci.yml).
+# the code, make changes on a branch and push commits. It is not given merge
+# or approval tools; a person reviews and merges every change. That rule is
+# only ENFORCED once the main ruleset (.github/rulesets/main.json, imported
+# in Settings → Rules) requires pull requests and the "build" check; this
+# file does not enforce it.
 #
 # Setup (one time):
 #   1. Install the Claude GitHub App on this repo (Claude Code CLI:
