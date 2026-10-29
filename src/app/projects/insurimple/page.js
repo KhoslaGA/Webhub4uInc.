@@ -44,7 +44,7 @@ export default function InsurimpleCaseStudy() {
         </div>
       </section>
       <section className={`wh ${styles.soft}`}>
-        <div className="wh-inner"><p className="wh-eyebrow">For your business</p><h2 className={`wh-display ${styles.h2}`}>Bring us the <span className="wh-em">hard workflow.</span></h2><div className={styles.prose}><p>If your team works across disconnected tools, approvals or complex records, we can help define the boundaries and build a focused first release. Start with the workflow, the users and the rules the software must enforce.</p></div><div className={styles.ctaRow}><Link href="/contact" className="wh-btn wh-btn--primary">Discuss custom software</Link><Link href="/projects" className={styles.back}>← All work</Link></div></div>
+        <div className="wh-inner"><p className="wh-eyebrow">For your business</p><h2 className={`wh-display ${styles.h2}`}>Bring us the <span className="wh-em">hard workflow.</span></h2><div className={styles.prose}><p>If your team works across disconnected tools, approvals or complex records, we can help define the boundaries and build a focused first release. Start with the workflow, the users and the rules the software must enforce.</p></div><div className={styles.ctaRow}><Link href="/services/custom-software-development" className="wh-btn wh-btn--primary">Explore custom software development</Link><Link href="/projects" className={styles.back}>← All work</Link></div></div>
       </section>
       <CtaNew />
     </PageShell>

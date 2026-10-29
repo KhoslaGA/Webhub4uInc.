@@ -17,7 +17,7 @@ const STEPS = [
   {
     n: "03",
     title: "Launch",
-    desc: "Domain, hosting, Google Business Profile, analytics — everything wired up and live, typically within 2–3 weeks.",
+    desc: "We check the agreed journeys, content and integrations before launch. Timing is confirmed after scope, content and dependencies are agreed.",
   },
   {
     n: "04",
@@ -34,7 +34,7 @@ const ProcessNew = () => {
       <div className="wh-inner">
         <RevealText as="p" className="wh-eyebrow">How it works</RevealText>
         <SplitHeading className={`wh-display ${styles.heading}`} delay={80}>
-          From first call to <span className="wh-em">first customer.</span>
+          From first conversation to <span className="wh-em">working release.</span>
         </SplitHeading>
         <div className={styles.steps} ref={stepsRef}>
           {STEPS.map((s) => (

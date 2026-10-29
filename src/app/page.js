@@ -1,8 +1,9 @@
+import { SERVICE_PAGES } from "@/data/servicePages";
 import JsonLd from "@/components/seo/JsonLd";
 import { localBusinessLd } from "@/lib/schema";
 import NavNew from "@/components/sections/new/NavNew";
 import HeroNew from "@/components/sections/new/HeroNew";
-import TrustStrip from "@/components/sections/new/TrustStrip";
+import FeaturedWork from "@/components/sections/new/FeaturedWork";
 import ServicesNew from "@/components/sections/new/ServicesNew";
 import AIShowcaseNew from "@/components/sections/new/AIShowcaseNew";
 import ProcessNew from "@/components/sections/new/ProcessNew";
@@ -26,8 +27,8 @@ export default function Home() {
       <JsonLd data={localBusinessLd()} />
       <NavNew />
       <main>
-        <HeroNew />
-        <TrustStrip />
+        <HeroNew services={SERVICE_PAGES.map(({ slug, name, question }) => ({ slug, name, question }))} />
+        <FeaturedWork />
         <ServicesNew />
         <AIShowcaseNew />
         <ProcessNew />

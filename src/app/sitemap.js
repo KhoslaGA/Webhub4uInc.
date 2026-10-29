@@ -1,3 +1,4 @@
+import { SERVICE_PAGES, servicePath } from "@/data/servicePages";
 import { BUSINESS } from "@/lib/business";
 import { LOCATIONS } from "@/data/locations";
 import { getAllPosts } from "@/lib/blog";
@@ -33,7 +34,9 @@ export default function sitemap() {
     ...(p.date ? { lastModified: new Date(p.date) } : {}),
   }));
 
-  return [...routes, ...cityRoutes, ...postRoutes].map((r) => ({
+  const serviceRoutes = SERVICE_PAGES.map((service) => ({ path: servicePath(service), priority: 0.8, changeFrequency: "monthly" }));
+
+  return [...routes, ...serviceRoutes, ...cityRoutes, ...postRoutes].map((r) => ({
     url: `${base}${r.path}`,
     ...(r.lastModified ? { lastModified: r.lastModified } : {}),
     changeFrequency: r.changeFrequency,

@@ -1,55 +1,28 @@
-"use client";
-import { useRef } from "react";
 import Link from "next/link";
-import useTilt from "./useTilt";
-import { SplitHeading, RevealText, useStagger } from "./homeMotion";
+import { SERVICE_PAGES, servicePath } from "@/data/servicePages";
 import styles from "./ServicesNew.module.css";
 
-const SERVICES = [
-  { title: "Web Design & Development", desc: "Fast, modern, mobile-first websites built to convert visitors into calls, bookings, and sales.", tag: "Core" },
-  { title: "AI Receptionist", desc: "Answers your phone after hours, texts back missed calls, and books appointments while you work.", tag: "AI" },
-  { title: "AI Chatbots", desc: "A website assistant trained on your business that answers questions and captures leads 24/7.", tag: "AI" },
-  { title: "Local SEO", desc: "Google Business Profile optimization, city pages, and reviews strategy that puts you on the map.", tag: "Growth" },
-  { title: "Business Automation", desc: "Quotes, invoices, follow-ups, and CRM updates that run themselves — powered by AI workflows.", tag: "AI" },
-  { title: "Branding & Identity", desc: "Logos, colors, and messaging that make a small business look established and trustworthy.", tag: "Core" },
-  { title: "E-Commerce", desc: "Online stores on Shopify or custom builds — products, payments, and shipping done right.", tag: "Core" },
-  { title: "Care Plans & Hosting", desc: "Updates, backups, security, and small changes handled monthly, so your site never goes stale.", tag: "Growth" },
-];
-
-const ServicesNew = () => {
-  const gridRef = useRef(null);
-  useTilt(gridRef, `.${styles.card}`);
-  useStagger(gridRef);
+export default function ServicesNew() {
   return (
     <section className={`wh ${styles.wrap}`} id="services">
       <div className="wh-inner">
-        <RevealText as="p" className="wh-eyebrow">
-          What we do
-        </RevealText>
-        <SplitHeading className={`wh-display ${styles.heading}`} delay={80}>
-          Everything your business needs to{" "}
-          <span className="wh-em">win online.</span>
-        </SplitHeading>
-        <div className={styles.grid} ref={gridRef}>
-          {SERVICES.map((s) => (
-            <div key={s.title} className={styles.card}>
-              <span className={`${styles.tag} ${s.tag === "AI" ? styles.tagAi : ""}`}>
-                {s.tag}
-              </span>
-              <h3>{s.title}</h3>
-              <p>{s.desc}</p>
-            </div>
+        <p className="wh-eyebrow">What we do</p>
+        <h2 className={`wh-display ${styles.heading}`}>Three ways to move your <span className="wh-em">business forward.</span></h2>
+        <div className={styles.grid}>
+          {SERVICE_PAGES.map((service) => (
+            <article key={service.slug} className={styles.card}>
+              <span className={styles.tag}>{service.label}</span>
+              <h3><Link href={servicePath(service)}>{service.name}</Link></h3>
+              <p>{service.short}</p>
+              <Link className={styles.detailLink} href={servicePath(service)}>Explore {service.slug === "seo" ? "SEO" : service.name.toLowerCase()} <span aria-hidden="true">↗</span></Link>
+            </article>
           ))}
         </div>
-        <RevealText as="div" className={styles.foot}>
-          <p>Not sure what you need? Start with a free 20-minute consult.</p>
-          <Link href="/contact" className="wh-btn wh-btn--primary">
-            Get a free consult
-          </Link>
-        </RevealText>
+        <div className={styles.foot}>
+          <p>Start with one customer question or one process to improve.</p>
+          <Link href="/contact" className="wh-btn wh-btn--primary">Discuss your project</Link>
+        </div>
       </div>
     </section>
   );
-};
-
-export default ServicesNew;
+}

@@ -247,9 +247,10 @@ export default function RateFamilyCaseStudy() {
             ))}
           </div>
           <div className={styles.ctaRow}>
-            <Link href="/contact" className="wh-btn wh-btn--primary">
-              Start a project
+            <Link href="/services/web-development" className="wh-btn wh-btn--primary">
+              Explore web development
             </Link>
+            <Link href="/services/seo" className={styles.back}>Explore SEO services ↗</Link>
             <Link href="/projects" className={styles.back}>
               ← All work
             </Link>

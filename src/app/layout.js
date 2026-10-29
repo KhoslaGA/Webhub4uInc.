@@ -14,13 +14,13 @@ const inter = Inter({
 
 export const metadata = {
   metadataBase: new URL(BUSINESS.url),
-  title: "Webhub4U — Web Design & AI Solutions Agency in the GTA",
+  title: "Webhub4U — Web Development, SEO & Custom Software",
   description:
-    "Webhub4U is a Brampton-based digital agency building high-performance websites, local SEO, and AI-powered tools — chatbots, AI receptionists, and automation — for businesses across the Greater Toronto Area.",
+    "Webhub4U is a Brampton-based agency providing web development, SEO and custom software for Toronto and Greater Toronto Area businesses.",
   openGraph: {
-    title: "Webhub4U — Web Design & AI Solutions Agency in the GTA",
+    title: "Webhub4U — Web Development, SEO & Custom Software",
     description:
-      "High-performance websites, local SEO, and AI-powered tools for GTA businesses.",
+      "Web development, SEO and custom software for Toronto and GTA businesses.",
     url: BUSINESS.url,
     siteName: "Webhub4U",
     locale: "en_CA",

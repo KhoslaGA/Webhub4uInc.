@@ -17,17 +17,18 @@ const FooterNew = () => (
             className={styles.logoImg}
           />
           <p className={styles.blurb}>
-            Websites, local SEO, and AI-powered tools for businesses across
+            Web development, SEO and custom software for businesses across
             the Greater Toronto Area. Based in Brampton, Ontario.
           </p>
         </div>
         <div className={styles.col}>
           <p className={styles.colTitle}>Services</p>
-          <Link href="/#services">Web design</Link>
+          <Link href="/services/web-development">Web development</Link>
+          <Link href="/services/custom-software-development">Custom software</Link>
           <Link href="/ai-receptionist">AI receptionist</Link>
           <Link href="/missed-call-text-back">Missed-call text-back</Link>
           <Link href="/#ai">AI chatbots</Link>
-          <Link href="/#services">Local SEO</Link>
+          <Link href="/services/seo">SEO &amp; local search</Link>
           <Link href="/#pricing">Pricing</Link>
         </div>
         <div className={styles.col}>
