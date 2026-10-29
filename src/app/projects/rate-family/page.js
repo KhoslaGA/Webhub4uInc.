@@ -14,9 +14,12 @@ export const metadata = {
 };
 
 /*
- * Scope reviewed on 2026-10-20 against public brand sites and the V2 README.
- * Public education sites and mock-data V2 are explicitly distinguished.
- * Add outcome metrics only with a dated, shareable measurement source.
+ * Audited 2026-10-29 against the production repository (KhoslaGA/Toprates
+ * @ 59dd713) and the separate V2 development app (KhoslaGA/Rate-Family-V2
+ * @ 08b1967). Sources, counting method and verdicts:
+ * docs/case-study-audit-2026-10-29.md. Production facts and V2 facts stay in
+ * separate sections. Add outcome metrics only with a dated, shareable
+ * measurement source.
  */
 
 const SITES = [
@@ -26,38 +29,57 @@ const SITES = [
   { name: "HealthRate.ca", href: "https://www.healthrate.ca", focus: "Health, travel and Super Visa insurance" },
 ];
 
+// The production network: the one codebase that serves all four public sites.
 const BUILT = [
   {
     t: "One app, four sites",
-    d: "The shared V2 codebase supports four brand identities through host-based theming, with separate visual styles and navigation for each brand.",
+    d: "A single Next.js application serves all four brands. Each request resolves its brand from the domain, which sets that site's look, navigation, content and search identity.",
   },
   {
-    t: "Shared contracts, distinct brands",
-    d: "The V2 codebase separates its frontend, backend and shared contracts. A shared API client connects each brand to deterministic development data.",
+    t: "One content model, four brands",
+    d: "One Sanity CMS model with 9 document types. Every editorial type (articles, city pages, glossary terms, briefings, authors, categories) is scoped to the brand that owns it.",
   },
   {
     t: "Search plumbing for a multi-domain network",
-    d: "Our search work covers metadata, canonical ownership, sitemaps and links between relevant pages. These foundations need ongoing checks and measurement as the network evolves.",
+    d: "Canonical URLs, sitemaps and structured data come from each brand's own domain. Every production build runs a check that fails if a sitemap lists another brand's URL, and new URLs are submitted to IndexNow after production deploys.",
   },
   {
     t: "Guardrails written as code",
-    d: "The V2 development environment explicitly marks quote and card fixtures as mock data. Tests and shared contracts help keep those fixtures distinct from live offers.",
+    d: "20+ check scripts run in a pre-merge test gate: canonical ownership, noindex rules, mock-quote labelling, compensation and card claims, review attestation and more. They support human review; they don't replace it.",
+  },
+];
+
+// Rate Family V2: a separate development application, not the live sites.
+const V2 = [
+  {
+    t: "Frontend, backend, shared contracts",
+    d: "A Next.js frontend and a NestJS API in one repository, sharing a single package of typed contracts so both sides agree on every payload.",
+  },
+  {
+    t: "Host theming",
+    d: "The same four brands, themed per host through a shared design-token contract.",
+  },
+  {
+    t: "Mock data, labelled as mock",
+    d: "Quote and card data are deterministic fixtures. Fixture offers carry a development-only source, and in production mode the API client rejects any mock-tier response that is missing its mock flag.",
   },
 ];
 
 const GATES = [
-  "The public education websites and V2 development environment have distinct roles.",
+  "The public education websites and the V2 development app are separate codebases with distinct roles.",
   "V2 quote and card data are mock fixtures, not live offers.",
-  "The V2 application does not provide a live purchase or bind service.",
+  "V2 has no purchase or bind endpoint: binding insurance is a regulated act, so the platform stops at the lead.",
   "Measured search and enquiry outcomes will be reported with dates and sources.",
 ];
 
 const NUMBERS = [
   { n: "4", l: "public education brands" },
-  { n: "1", l: "shared V2 codebase" },
+  { n: "120+", l: "page routes in one production app" },
+  { n: "9", l: "CMS document types" },
+  { n: "20+", l: "automated check scripts" },
 ];
 
-const STACK = ["Next.js", "React", "TypeScript", "NestJS (V2)", "Shared API contracts"];
+const STACK = ["Next.js", "React", "TypeScript", "Sanity CMS", "IndexNow", "NestJS (V2)"];
 
 const FOR_YOU = [
   {
@@ -108,7 +130,7 @@ export default function RateFamilyCaseStudy() {
             <p>
               Each brand needed its own look, voice and search identity. Four
               separate websites would have meant four codebases, four content
-              systems and four sets of bugs to chase — for a team of one.
+              systems and four sets of bugs to chase — for a small team.
             </p>
             <p>
               And the subject matter is money and insurance: content where
@@ -156,6 +178,31 @@ export default function RateFamilyCaseStudy() {
         </div>
       </section>
 
+      {/* ---------- V2 (IN DEVELOPMENT) ---------- */}
+      <section className={`wh ${styles.soft}`}>
+        <div className="wh-inner">
+          <p className="wh-eyebrow">In development · Rate Family V2</p>
+          <h2 className={`wh-display ${styles.h2}`}>
+            The next version, <span className="wh-em">built on mock data first.</span>
+          </h2>
+          <div className={styles.prose}>
+            <p>
+              V2 is a separate application, not the code behind the live
+              sites. It runs entirely on deterministic mock data, so the
+              integrations can be swapped in later without reshaping the app.
+            </p>
+          </div>
+          <div className={styles.grid3}>
+            {V2.map((v) => (
+              <div key={v.t} className={styles.card}>
+                <h3>{v.t}</h3>
+                <p>{v.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ---------- HOW IT RUNS ---------- */}
       <section className={`wh ${styles.dark}`}>
         <div className={styles.glow} aria-hidden="true" />
@@ -166,8 +213,8 @@ export default function RateFamilyCaseStudy() {
               Public websites. <span className="wh-em">An evolving product.</span>
             </h2>
             <p className={styles.proseInv}>
-              The public education network is live. Its V2 application is a
-              development environment with explicit limits:
+              The public education network is live. V2 is a separate
+              development application with explicit limits:
             </p>
           </div>
           <ul className={styles.gates}>
@@ -194,9 +241,15 @@ export default function RateFamilyCaseStudy() {
             ))}
           </div>
           <p className={styles.note}>
-            The four public brands and shared V2 codebase describe the scope
-            of the work. Traffic, ranking and enquiry outcomes will be added
-            once they are measured and shareable.
+            Counted from the production codebase on 29 October 2026. Page
+            routes are route files, not published URLs: one blog or glossary
+            template serves many pages, and some routes serve only one brand.
+            Document types are the CMS schemas (six editorial, three for
+            enquiries and sign-ups). Check scripts run before changes merge,
+            and one of them also runs inside every production build. These
+            figures describe the scope of the work; traffic, ranking and
+            enquiry outcomes will be added once they are measured and
+            shareable.
           </p>
           <div className={styles.stack}>
             {STACK.map((s) => (
