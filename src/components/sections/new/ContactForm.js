@@ -1,123 +1,87 @@
 "use client";
-import { useRef, useState } from "react";
-import { submitEnquiry } from "@/lib/submitEnquiry.mjs";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { BUSINESS } from "@/lib/business";
+import { contactEmailBody, contactEmailHref } from "@/lib/contactEmail.mjs";
+import { CONTACT_SERVICES, BUDGETS, TIMINGS, contactService } from "@/lib/contactOptions.mjs";
 import styles from "./ContactForm.module.css";
 
-import { CONTACT_SERVICES, BUDGETS, TIMINGS, contactService } from "@/lib/contactOptions.mjs";
-
-const ContactForm = ({ initialService = "not-sure" }) => {
+const ContactForm = ({ initialService = "not-sure", demo = false, source = "" }) => {
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    business: "",
+    name: "", email: "", phone: "", business: "",
     service: contactService(initialService)?.value || "not-sure",
-    budget: BUDGETS[0],
-    timing: TIMINGS[0],
-    message: "",
+    budget: BUDGETS[0], timing: TIMINGS[0], message: "",
   });
-  const [status, setStatus] = useState("idle"); // idle | sending | ok | error
-
-  const [error, setError] = useState("");
-
-  const inFlight = useRef(false);
-  const attempt = useRef({});
-  const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
-
-  const submit = async (e) => {
+  const context = { demo, source };
+  const [notice, setNotice] = useState("");
+  const [showBrief, setShowBrief] = useState(false);
+  const briefRef = useRef(null);
+  const [ready, setReady] = useState(false);
+  useEffect(() => { setReady(true); }, []);
+  useEffect(() => {
+    if (showBrief) { briefRef.current?.focus(); briefRef.current?.select(); }
+  }, [showBrief]);
+  const update = (key) => (e) => {
+    setForm(current => ({ ...current, [key]: e.target.value }));
+    setNotice("");
+  };
+  const submit = (e) => {
     e.preventDefault();
-    if (inFlight.current) return;
-    inFlight.current = true;
-    setStatus("sending");
-    setError("");
+    setNotice("Your email app should open with your brief. Review it and press Send there to complete your enquiry.");
+    window.location.href = contactEmailHref(form, BUSINESS.email, context);
+  };
+  const copy = async () => {
     try {
-      await submitEnquiry("/api/sendEmail", form, attempt.current);
-      setStatus("ok");
-    } catch (err) {
-      setError(err.message || "We couldn't confirm delivery. Please contact us before retrying.");
-      setStatus("error");
-    } finally { inFlight.current = false; }
+      await navigator.clipboard.writeText(contactEmailBody(form, context));
+      setNotice(`Brief copied. Paste it into an email to ${BUSINESS.email} and send it when you're ready.`);
+    } catch {
+      setShowBrief(true);
+      setNotice("Select and copy your brief below, then paste it into an email to us.");
+    }
   };
 
-  if (status === "ok") {
-    return (
-      <div className={`wh ${styles.success}`} role="status" tabIndex={-1} ref={(node) => node?.focus()}>
-        <p className={styles.successIcon}>✓</p>
-        <h3>Thanks, {form.name.split(" ")[0] || "there"}!</h3>
-        <p>
-          Your enquiry was accepted for delivery. We’ll review your project details and follow up with next steps.
-        </p>
-      </div>
-    );
-  }
-
   return (
-    <form className={`wh ${styles.form}`} onSubmit={submit} aria-busy={status === "sending"}>
-      <fieldset disabled={status === "sending"} className={styles.fields}>
-      <div className={styles.row}>
-        <label>
-          Name
-          <input required maxLength={120} autoComplete="name" value={form.name} onChange={update("name")} placeholder="Your name" />
-        </label>
-        <label>
-          Business
-          <input maxLength={200} autoComplete="organization" value={form.business} onChange={update("business")} placeholder="Business name" />
-        </label>
+    <form className={`wh ${styles.form}`} onSubmit={submit} aria-label="Project enquiry">
+      <div className={styles.intro}>
+        <p className="wh-eyebrow">A simple starting point</p>
+        <h2>{demo ? "Ask about a demo." : "Email us your project brief."}</h2>
+        <p>Just your name and email to start. Add as much detail as you have.</p>
       </div>
       <div className={styles.row}>
-        <label>
-          Email
-          <input required maxLength={254} autoComplete="email" type="email" value={form.email} onChange={update("email")} placeholder="you@business.com" />
-        </label>
-        <label>
-          Phone
-          <input maxLength={60} autoComplete="tel" type="tel" value={form.phone} onChange={update("phone")} placeholder="(555) 555-5555" />
-        </label>
+        <label>Name<input required name="name" maxLength={120} autoComplete="name" value={form.name} onChange={update("name")} placeholder="Your name" /></label>
+        <label>Email<input required name="email" maxLength={254} autoComplete="email" type="email" value={form.email} onChange={update("email")} placeholder="you@business.com" /></label>
       </div>
-      <label>
-        What can we help with?
-        <select value={form.service} onChange={update("service")}>
-          {CONTACT_SERVICES.map((s) => (
-            <option key={s.value} value={s.value}>{s.label}</option>
-          ))}
+      <label>What can we help with?
+        <select name="service" value={form.service} onChange={update("service")}>
+          {CONTACT_SERVICES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
         </select>
       </label>
-      <div className={styles.row}>
-        <label>Indicative budget (optional)
-          <select value={form.budget} onChange={update("budget")}>
-            {BUDGETS.map((budget) => <option key={budget}>{budget}</option>)}
-          </select>
-        </label>
-        <label>Ideal timing (optional)
-          <select value={form.timing} onChange={update("timing")}>
-            {TIMINGS.map((timing) => <option key={timing}>{timing}</option>)}
-          </select>
-        </label>
-      </div>
-      <label>
-        Tell us a bit more
-        <textarea
-          rows={5}
-          maxLength={6000}
-          value={form.message}
-          onChange={update("message")}
-          placeholder="Who is this for, what should they be able to do, and which tools do you already use?"
-        />
+      <label>What would you like to build or improve? (optional)
+        <textarea name="message" rows={3} maxLength={1500} value={form.message} onChange={update("message")} placeholder="A new website, more local enquiries, a better way to manage your work…" />
       </label>
-      <button
-        type="submit"
-        className="wh-btn wh-btn--primary"
-        disabled={status === "sending"}
-      >
-        {status === "sending" ? "Sending…" : "Send message"}
-      </button>
-      </fieldset>
-      <p className={styles.pending} role="status">{status === "sending" ? "Sending your request…" : ""}</p>
-      {status === "error" && (
-        <p className={styles.err} role="alert">
-          {error} <a href="mailto:webhub4u@gmail.com">webhub4u@gmail.com</a>
-        </p>
-      )}
+      <details className={styles.optional}>
+        <summary>Add business, phone, budget or timing <span>(optional)</span></summary>
+        <div className={styles.extraFields}>
+          <div className={styles.row}>
+            <label>Business (optional)<input name="business" maxLength={200} autoComplete="organization" value={form.business} onChange={update("business")} placeholder="Business name" /></label>
+            <label>Phone (optional)<input name="phone" maxLength={60} autoComplete="tel" type="tel" value={form.phone} onChange={update("phone")} placeholder="Your contact number" /></label>
+          </div>
+          <div className={styles.row}>
+            <label>Indicative budget (optional)<select name="budget" value={form.budget} onChange={update("budget")}>{BUDGETS.map(b => <option key={b}>{b}</option>)}</select></label>
+            <label>Ideal timing (optional)<select name="timing" value={form.timing} onChange={update("timing")}>{TIMINGS.map(t => <option key={t}>{t}</option>)}</select></label>
+          </div>
+        </div>
+      </details>
+      <noscript><p>Email us directly at <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>.</p></noscript>
+      <div className={styles.actions}>
+        <button type="submit" disabled={!ready} className="wh-btn wh-btn--primary">{demo ? "Open demo email" : "Open email draft"} <span aria-hidden="true">↗</span></button>
+        <button type="button" disabled={!ready} className={styles.copy} onClick={copy}>Copy brief</button>
+      </div>
+      <p className={styles.handoff}>Opens your email app with your details filled in. Review and send it there. Nothing is submitted through this page.</p>
+      <p className={styles.privacy}>We use enquiries to discuss your project. No marketing signup. <Link href="/privacy-policy">Privacy policy</Link></p>
+      {notice && <p className={styles.notice} role="status">{notice}</p>}
+      {showBrief && <label>Copy your brief<textarea aria-label="Copy your brief" ref={briefRef} readOnly rows={7} value={contactEmailBody(form, context)} /></label>}
+      <p className={styles.direct}>Prefer to write your own? <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a></p>
     </form>
   );
 };

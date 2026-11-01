@@ -1,47 +1,5 @@
 import { test, expect } from "@playwright/test";
 
-async function fillContact(page) {
-  await page.getByLabel("Name", { exact: true }).fill("Synthetic Reviewer");
-  await page.getByLabel("Email", { exact: true }).fill("reviewer@example.com");
-  await page.getByLabel("Tell us a bit more").fill("Synthetic verification only.");
-}
-async function fillDemo(page) {
-  await page.getByLabel("Name", { exact: true }).fill("Synthetic Reviewer");
-  await page.getByLabel("Phone", { exact: true }).fill("416 555 0100");
-}
-for (const flow of [
-  {path:"/contact?service=seo",api:"**/api/sendEmail",button:"Send message",fill:fillContact},
-  {path:"/ai-receptionist#demo",api:"**/api/demo-request",button:"Request a demo",fill:fillDemo},
-]) {
-  test(`${flow.path}: pending, failure retains input, retry and accepted success`, async ({page}) => {
-    let count=0; let release;
-    const gate=new Promise(resolve=>{release=resolve;});
-    await page.route(flow.api,async route=>{
-      count++;
-      if(count===1) { await gate; await route.fulfill({status:502,json:{ok:false,outcome:"rejected",error:"Synthetic rejection. Please retry."}}); }
-      else await route.fulfill({status:200,json:{ok:true,outcome:"accepted"}});
-    });
-    await page.goto(flow.path);
-    await flow.fill(page);
-    const button=page.getByRole("button",{name:flow.button,exact:true});
-    await button.click();
-    await expect(page.getByRole("button",{name:"Sending…",exact:true})).toBeDisabled();
-    await expect(page.getByRole("status")).toContainText("Sending your request");
-    expect(count).toBe(1);release();
-    await expect(page.locator("form").getByRole("alert")).toContainText("Synthetic rejection");
-    await expect(page.getByLabel("Name",{exact:true})).toHaveValue("Synthetic Reviewer");
-    await expect(button).toBeEnabled();await button.click();
-    await expect(page.getByRole("status")).toContainText("accepted for delivery");
-    expect(count).toBe(2);
-  });
-  test(`${flow.path}: HTTP 200 without acceptance cannot show success`,async({page})=>{
-    await page.route(flow.api,route=>route.fulfill({status:200,json:{ok:true}}));
-    await page.goto(flow.path);await flow.fill(page);await page.getByRole("button",{name:flow.button,exact:true}).click();
-    await expect(page.locator("form").getByRole("alert")).toContainText("couldn't confirm delivery");
-    await expect(page.getByLabel("Name",{exact:true})).toHaveValue("Synthetic Reviewer");
-  });
-}
-
 test("all three service CTAs preserve preselection and invalid queries are safe",async({page})=>{
   for(const service of ["web-development","seo","custom-software-development"]) {
     await page.goto(`/services/${service}`);
@@ -80,4 +38,56 @@ for(const width of [320,390,768,1440]) test(`key pages have no horizontal overfl
     const broken=await page.locator("img").evaluateAll(images=>images.filter(img=>img.complete&&img.naturalWidth===0).map(img=>img.src));
     expect(broken).toEqual([]);
   }
+});
+
+
+test("direct-email enquiry keeps details, optional fields and service context", async ({ page }) => {
+  let submissions = 0;
+  await page.route("**/api/sendEmail", async route => { submissions++; await route.abort(); });
+  await page.goto("/contact?service=seo#project-enquiry");
+  await expect(page.getByLabel("What can we help with?")).toHaveValue("seo");
+  await expect(page.getByLabel("Business (optional)", { exact: true })).not.toBeVisible();
+  await page.getByLabel("Name", { exact: true }).fill("Synthetic Reviewer");
+  await page.getByLabel("Email", { exact: true }).fill("reviewer@example.com");
+  await page.getByLabel("What would you like to build or improve? (optional)").fill("A clearer local service website.");
+  await page.getByText("Add business, phone, budget or timing", { exact: false }).click();
+  await page.getByLabel("Business (optional)", { exact: true }).fill("Example Studio");
+  await page.getByRole("button", { name: "Open email draft" }).click();
+  await expect(page.getByRole("status")).toContainText("press Send there");
+  await expect(page.getByLabel("Name", { exact: true })).toHaveValue("Synthetic Reviewer");
+  expect(submissions).toBe(0);
+});
+
+test("copy-brief fallback preserves the enquiry when clipboard is unavailable", async ({ page }) => {
+  await page.addInitScript(() => Object.defineProperty(navigator, "clipboard", { value: { writeText: async () => { throw new Error("Unavailable"); } } }));
+  await page.goto("/contact?service=web-development");
+  await page.getByLabel("Name", { exact: true }).fill("Synthetic Reviewer");
+  await page.getByLabel("Email", { exact: true }).fill("reviewer@example.com");
+  await page.getByRole("button", { name: "Copy brief", exact: true }).click();
+  await expect(page.getByLabel("Copy your brief", { exact: true })).toBeFocused();
+  await expect(page.getByLabel("Copy your brief", { exact: true })).toHaveValue(/Interested in: Web development/);
+  await expect(page.getByRole("status")).toContainText("Select and copy");
+});
+
+test("project CTA opens the brief and remains visible without motion", async ({ page }) => {
+  await page.goto("/projects");
+  const cta = page.getByRole("region", { name: "Have a project in mind? Let's make a plan." });
+  const link = cta.getByRole("link", { name: "Start your project" });
+  await expect(link).toBeVisible();
+  await link.click();
+  await expect(page).toHaveURL(/contact#project-enquiry$/);
+  await expect(page.getByRole("form", { name: "Project enquiry" })).toBeVisible();
+});
+
+
+for (const path of ["/ai-receptionist#demo", "/lp/ai-receptionist-google#lp-demo", "/lp/ai-receptionist-meta#lp-demo"]) test(`demo enquiry uses direct email on ${path}`, async ({ page }) => {
+  let submissions = 0;
+  await page.route("**/api/demo-request", async route => { submissions++; await route.abort(); });
+  await page.goto(path);
+  await expect(page.getByLabel("What can we help with?")).toHaveValue("ai-receptionist");
+  await page.getByLabel("Name", { exact: true }).fill("Synthetic Reviewer");
+  await page.getByLabel("Email", { exact: true }).fill("reviewer@example.com");
+  await page.getByRole("button", { name: "Open demo email" }).click();
+  await expect(page.getByRole("status")).toContainText("press Send there");
+  expect(submissions).toBe(0);
 });
