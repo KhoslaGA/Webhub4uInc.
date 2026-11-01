@@ -25,7 +25,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       # npm ci is strict: it fails if package-lock.json drifts from
@@ -33,10 +33,16 @@ jobs:
       - run: npm ci --no-audit --no-fund
 
       - name: Verify enquiry delivery and validation
-        run: node --test scripts/test_contact.mjs
+        run: npm test
 
       # next build also runs lint + type checks.
       - run: npm run build
+
+      - name: Install browser for mocked form checks
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify forms and responsive journeys (mock providers)
+        run: npm run test:browser
 
       - uses: actions/setup-python@v6
         with:

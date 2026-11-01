@@ -25,6 +25,7 @@ const prune = (obj) =>
   Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined));
 
 export async function POST(req) {
+  if (process.env.VERCEL_ENV === "preview") return Response.json({ ok: true, via: "noop" });
   const PIXEL =
     process.env.META_PIXEL_ID || process.env.NEXT_PUBLIC_META_PIXEL_ID;
   const TOKEN = process.env.META_CAPI_TOKEN;

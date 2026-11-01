@@ -24,7 +24,7 @@ export default function Projects() {
           <div className={styles.featured}>
             <span className={styles.tag}>Owned platform · Web development & SEO</span>
             <h2 className={`wh-display ${styles.featTitle}`}>
-              RateFamily — four brands, one platform
+              RateFamily — public sites and V2 development
             </h2>
             <p className={styles.featText}>
               Four Canadian finance and insurance brands, a shared web platform

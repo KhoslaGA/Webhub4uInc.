@@ -9,26 +9,26 @@ import styles from "@/components/sections/new/CaseStudy.module.css";
 export const metadata = {
   title: "RateFamily: Web Development & SEO Case Study | Webhub4U",
   description:
-    "Explore RateFamily: four Canadian education brands, shared web development and technical SEO foundations. Learn about the platform and its development status.",
+    "Explore the owner-operated RateFamily network: public Canadian websites and a separate shared V2 development platform, with technical SEO and content architecture.",
   alternates: { canonical: "/projects/rate-family" },
 };
 
 /*
- * Scope reviewed on 2026-10-20 against public brand sites and the V2 README.
- * Public education sites and mock-data V2 are explicitly distinguished.
+ * Scope reviewed on 2026-10-31 against public pages and current source.
+ * The public network and mock-data V2 are explicitly distinguished.
  * Add outcome metrics only with a dated, shareable measurement source.
  */
 
 const SITES = [
-  { name: "TopRates.ca", href: "https://www.toprates.ca", focus: "The hub — insurance, mortgages and credit cards" },
-  { name: "LifeRate.ca", href: "https://www.liferate.ca", focus: "Life and critical illness insurance" },
-  { name: "TermRates.ca", href: "https://www.termrates.ca", focus: "Mortgages" },
-  { name: "HealthRate.ca", href: "https://www.healthrate.ca", focus: "Health, travel and Super Visa insurance" },
+  { name: "TopRates.ca", href: "https://www.toprates.ca", focus: "The education-led hub — insurance, mortgages and credit cards" },
+  { name: "LifeRate.ca", href: "https://www.liferate.ca", focus: "Life and critical illness — intended licensed sales and quoting" },
+  { name: "TermRates.ca", href: "https://www.termrates.ca", focus: "Mortgages — intended licensed sales and quoting" },
+  { name: "HealthRate.ca", href: "https://www.healthrate.ca", focus: "Health, travel and Super Visa — intended licensed sales and quoting" },
 ];
 
 const BUILT = [
   {
-    t: "One app, four sites",
+    t: "A shared V2 development application",
     d: "The shared V2 codebase supports four brand identities through host-based theming, with separate visual styles and navigation for each brand.",
   },
   {
@@ -46,14 +46,14 @@ const BUILT = [
 ];
 
 const GATES = [
-  "The public education websites and V2 development environment have distinct roles.",
+  "The public websites and V2 development environment have distinct roles; the public network is not represented as running on V2.",
   "V2 quote and card data are mock fixtures, not live offers.",
   "The V2 application does not provide a live purchase or bind service.",
   "Measured search and enquiry outcomes will be reported with dates and sources.",
 ];
 
 const NUMBERS = [
-  { n: "4", l: "public education brands" },
+  { n: "4", l: "brands in the network" },
   { n: "1", l: "shared V2 codebase" },
 ];
 
@@ -89,10 +89,10 @@ export default function RateFamilyCaseStudy() {
         eyebrow="Case study 02 · Built and operated in-house"
         title={
           <>
-            The Rate Family: <span className="wh-em">four brands, one codebase.</span>
+            The Rate Family: <span className="wh-em">public websites and a shared V2 platform.</span>
           </>
         }
-        sub="A network of four Canadian insurance and mortgage education sites — built, run and maintained by Webhub4U on a single platform, with distinct brand identities, shared development patterns and an ongoing search programme."
+        sub="An owner-operated network with distinct brand roles: TopRates is the education-led hub; LifeRate, TermRates and HealthRate are intended for licensed sales and quoting. The public websites and shared V2 development application are separate. Live integrations must be verified for each product."
       />
 
       {/* ---------- CHALLENGE ---------- */}
@@ -106,9 +106,9 @@ export default function RateFamilyCaseStudy() {
           </div>
           <div className={styles.prose}>
             <p>
-              Each brand needed its own look, voice and search identity. Four
-              separate websites would have meant four codebases, four content
-              systems and four sets of bugs to chase — for a team of one.
+              Each brand needs its own look, voice and search identity. The V2
+              development project explores shared implementation patterns while
+              keeping the public websites and their release paths distinct.
             </p>
             <p>
               And the subject matter is money and insurance: content where
@@ -122,9 +122,9 @@ export default function RateFamilyCaseStudy() {
       {/* ---------- WHAT WE BUILT ---------- */}
       <section className={`wh ${styles.soft}`}>
         <div className="wh-inner">
-          <p className="wh-eyebrow">What we built</p>
+          <p className="wh-eyebrow">Development work</p>
           <h2 className={`wh-display ${styles.h2}`}>
-            A shared platform for <span className="wh-em">four brands.</span>
+            A V2 development platform for <span className="wh-em">four brands.</span>
           </h2>
           <div className={styles.grid2}>
             {BUILT.map((b) => (
@@ -166,8 +166,8 @@ export default function RateFamilyCaseStudy() {
               Public websites. <span className="wh-em">An evolving product.</span>
             </h2>
             <p className={styles.proseInv}>
-              The public education network is live. Its V2 application is a
-              development environment with explicit limits:
+              The public network and the V2 application have separate release
+              paths. V2 is a development environment with explicit limits:
             </p>
           </div>
           <ul className={styles.gates}>
@@ -194,7 +194,7 @@ export default function RateFamilyCaseStudy() {
             ))}
           </div>
           <p className={styles.note}>
-            The four public brands and shared V2 codebase describe the scope
+            The four brands and separate shared V2 codebase describe the scope
             of the work. Traffic, ranking and enquiry outcomes will be added
             once they are measured and shareable.
           </p>

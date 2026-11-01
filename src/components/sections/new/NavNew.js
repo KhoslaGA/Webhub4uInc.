@@ -18,9 +18,14 @@ const NavNew = () => {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
+    const close = (event) => { if (event.key === "Escape") setOpen(false); };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    document.addEventListener("keydown", close);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("keydown", close);
+    };
   }, []);
 
   return (
@@ -49,7 +54,7 @@ const NavNew = () => {
             className={`wh-btn wh-btn--primary ${styles.navCta}`}
             onClick={() => setOpen(false)}
           >
-            Book a call
+            Discuss your project
           </Link>
         </nav>
         <button

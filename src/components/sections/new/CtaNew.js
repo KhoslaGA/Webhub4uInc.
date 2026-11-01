@@ -14,13 +14,13 @@ const CtaNew = () => (
         <span className="wh-em">business you actually are?</span>
       </SplitHeading>
       <RevealText as="p" className={styles.sub} delay={120}>
-        Book a free 20-minute call. We&apos;ll look at your current online
+        Request a free introductory call. We&apos;ll look at your current online
         presence together and tell you exactly what we&apos;d do — even if you
         don&apos;t hire us.
       </RevealText>
       <RevealText as="div" className={styles.ctas} delay={200}>
         <Link href="/contact" className="wh-btn wh-btn--primary">
-          Book your free consult
+          Discuss your project
         </Link>
         <a href="mailto:webhub4u@gmail.com" className="wh-btn wh-btn--ghost-dark">
           webhub4u@gmail.com

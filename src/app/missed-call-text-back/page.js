@@ -120,9 +120,9 @@ export default function MissedCallTextBack() {
               Missed a call? They just got a <span className="wh-em">text back.</span>
             </h1>
             <p className={styles.heroSub}>
-              You can&apos;t answer every call — but you can make sure no one is
-              left with silence. Every missed call gets an instant, friendly
-              text, so the lead keeps talking instead of calling your competitor.
+              Give missed callers a clear next step with configured text follow-up.
+              Availability, consent requirements and delivery depend on your
+              phone system and messaging provider.
             </p>
             <div className={styles.heroCtas}>
               <a href="#start" className="wh-btn wh-btn--primary">

@@ -16,7 +16,7 @@ const TIERS = [
       "Mobile-first, fast-loading design",
       "Contact form + click-to-call",
       "Google Business Profile setup",
-      "Live in 2 weeks",
+      "Timeline agreed after scoping",
     ],
     featured: false,
   },

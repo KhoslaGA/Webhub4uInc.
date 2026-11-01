@@ -1,18 +1,20 @@
 import { BUSINESS } from "@/lib/business";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import "./theme.css";
 import SmoothScroll from "@/components/sections/new/SmoothScroll";
 import Analytics from "@/components/analytics/Analytics";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+const inter = localFont({
+  src: "./fonts/InterVariable.woff2",
+  weight: "300 900",
+  style: "normal",
   display: "swap",
   variable: "--fontInter",
 });
 
 export const metadata = {
+  ...(process.env.VERCEL_ENV === "preview" ? { robots: { index: false, follow: false } } : {}),
   metadataBase: new URL(BUSINESS.url),
   title: "Webhub4U — Web Development, SEO & Custom Software",
   description:
@@ -45,7 +47,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.className}`}>
         <SmoothScroll>{children}</SmoothScroll>
-        <Analytics />
+        {process.env.VERCEL_ENV !== "preview" && <Analytics />}
       </body>
     </html>
   );

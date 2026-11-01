@@ -11,7 +11,7 @@ export const metadata = {
   alternates: { canonical: "/contact" },
   title: "Discuss Your Project | Webhub4U — Toronto & GTA",
   description:
-    "Book a free 20-minute consult with Webhub4U. Web development, SEO and custom software for businesses across Brampton, Mississauga, Toronto, and the GTA.",
+    "Discuss your project with Webhub4U. Web development, SEO and custom software for businesses across Brampton, Mississauga, Toronto, and the GTA.",
 };
 
 export default function Contact() {
@@ -57,6 +57,21 @@ export default function Contact() {
               <p>Within one business day, usually much sooner.</p>
             </div>
           </aside>
+        </div>
+      </section>
+      <section className={`wh ${styles.wrap}`} aria-labelledby="enquiry-brief-title">
+        <div className="wh-inner">
+          <p className="wh-eyebrow">A useful starting point</p>
+          <h2 id="enquiry-brief-title" className="wh-display">Five things to bring to your brief.</h2>
+          <p>You don’t need every answer before getting in touch. A short outline helps us scope the next step.</p>
+          <ol>
+            <li><strong>Customer:</strong> Who needs the website or tool?</li>
+            <li><strong>Action:</strong> What should they be able to do?</li>
+            <li><strong>Questions:</strong> What do they need to know first?</li>
+            <li><strong>Follow-up:</strong> Who receives a request, and what happens next?</li>
+            <li><strong>Success:</strong> What observable result will tell you it is working?</li>
+          </ol>
+          <p>Timing is confirmed after scope, content, integrations and approvals are established.</p>
         </div>
       </section>
       <BookingEmbed />

@@ -14,12 +14,12 @@ import styles from "@/components/sections/new/AiReceptionistPage.module.css";
 const { setup, monthly } = OFFER.aiReceptionist;
 
 export const metadata = {
-  title: "AI Receptionist for GTA Businesses | Never Miss a Call — Webhub4U",
+  title: "AI Receptionist for GTA Businesses | After-Hours Enquiries — Webhub4U",
   description:
-    "An AI receptionist that answers every call, texts back missed ones, and books jobs straight into your calendar — 24/7. Built for GTA trades and local businesses. Hear it live.",
+    "After-hours call handling and appointment enquiries for GTA businesses. Discuss your phone system, calendar and follow-up needs in a demo.",
   alternates: { canonical: "/ai-receptionist" },
   openGraph: {
-    title: "Never Miss Another Call — AI Receptionist by Webhub4U",
+    title: "AI Receptionist for After-Hours Enquiries — Webhub4U",
     description:
       "Answers, texts back, and books appointments 24/7 so you never lose a job to voicemail.",
     url: "https://www.webhub4u.com/ai-receptionist",
@@ -41,12 +41,12 @@ const STEPS = [
   {
     n: "03",
     t: "You get the job",
-    d: "You get a text and a full transcript for every call. The lead that used to hit voicemail is now a confirmed appointment.",
+    d: "Configure call summaries and follow-up notifications. Appointment handling depends on calendar integration and caller confirmation.",
   },
 ];
 
 const INCLUDES = [
-  "Answers every call, 24/7 — after hours, weekends, on the job site",
+  "After-hours call handling with an agreed escalation and fallback process",
   "Texts back missed calls instantly so the lead never goes cold",
   "Books appointments into your calendar",
   "Trained only on info you approve — escalates anything it can't handle",
@@ -143,7 +143,7 @@ export default function AiReceptionist() {
           <div className={styles.heroCopy}>
             <p className={`wh-eyebrow ${styles.heroEyebrow}`}>AI Receptionist</p>
             <h1 className={`wh-display ${styles.h1}`}>
-              Never miss another call. <span className="wh-em">Ever.</span>
+              Make after-hours enquiries <span className="wh-em">easier to handle.</span>
             </h1>
             <p className={styles.heroSub}>
               Every missed call is a missed job. Your AI receptionist answers on

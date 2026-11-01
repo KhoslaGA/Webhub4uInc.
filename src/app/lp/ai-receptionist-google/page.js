@@ -3,7 +3,7 @@ import LandingPage from "@/components/sections/new/LandingPage";
 export const metadata = {
   title: "AI Receptionist for GTA Businesses | Webhub4U",
   description:
-    "An AI receptionist that answers every call, texts back missed ones, and books jobs 24/7. Hear it live on your own business.",
+    "Explore after-hours call handling, missed-call follow-up and calendar integration for your GTA business. Request a demonstration.",
   robots: { index: false, follow: false },
 };
 
@@ -12,16 +12,16 @@ const COPY = {
   a: {
     eyebrow: "AI Receptionist · Serving the GTA",
     h1: "The AI receptionist that books jobs while you work.",
-    sub: "It answers every call in your business name, texts back the ones you miss, and drops booked appointments straight into your calendar — 24/7.",
+    sub: "Explore call handling in your business name, missed-call follow-up and calendar integration. Coverage and fallback depend on your tools and agreed setup.",
     ctaPrimary: "Hear it live",
     formHeading: "Hear exactly what your callers would hear.",
   },
   b: {
     eyebrow: "AI Receptionist · Serving the GTA",
-    h1: "Never send another caller to voicemail.",
+    h1: "Give callers another way to reach your business.",
     sub: "Your AI receptionist answers on the first ring, day or night, and books the job — so the lead you paid to earn doesn't call the next guy.",
     ctaPrimary: "Get my free demo",
-    formHeading: "Book your live demo.",
+    formHeading: "Request a live demo.",
   },
 };
 

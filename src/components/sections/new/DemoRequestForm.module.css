@@ -35,7 +35,7 @@
 }
 .form input::placeholder,
 .form textarea::placeholder {
-  color: #aab0ba;
+  color: #6b7280;
   text-transform: none;
   font-weight: 400;
 }
@@ -91,3 +91,7 @@
     grid-template-columns: 1fr;
   }
 }
+
+.fields { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 20px; }
+.pending { margin: 0; }
+.pending:empty { display: none; }
