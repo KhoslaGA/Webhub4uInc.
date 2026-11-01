@@ -15,7 +15,8 @@ associated with this repository and `main` is its production branch.
 - [x] P2: retained assets, improved field contrast/focus, SEO, links and responsive/keyboard review.
 - [x] P3: five unpublished content concepts, 11 feed images + 3 stories with editable sources in local handoff.
 - [x] Final local validation and sanitized release/environment documentation.
-- [ ] Remote CI/preview result and PR URL: recorded in final local morning report after push.
+- [x] Draft PR #5 created; implementation preview READY with verified noindex/robots.
+- [x] Initial CI lockfile failure diagnosed; original optional peer entry restored. Final remote result is recorded in the local morning handoff.
 
 Only sanitized implementation findings belong in this public repository.
 Private evidence, account diagnostics and fixture captures remain in the local

@@ -38,4 +38,4 @@ Single browser run, Chromium 156, 1440×1000, reduced-motion preference, no CPU/
 
 Screenshots, raw measurements and product captures are in the owner's local outputs. Insurimple capture is a local fixture view, not production. Browser automation used Chromium only; no Safari/Firefox run or field-performance measurement was made.
 
-Preview verification and CI results are recorded in the final local morning report after the branch push. Production has not been merged or deployed by this task.
+The implementation preview reached READY. Authenticated reads returned the contact form (200), noindex metadata/header and `robots.txt` disallowing all crawling. Initial remote CI found a missing optional TypeScript peer lock entry; the original locked entry was restored without upgrading it. Final CI results are recorded in the local morning report. Production has not been merged or deployed by this task.

@@ -2,7 +2,10 @@
 
 Branch: `codex/webhub4u-overnight-20261031`.
 Base: `fc406a87f81235b9b964ddf3650c29bd91e9d066`.
-Implementation SHA, draft PR and verified preview are added after the branch push. The final local handoff records the final branch head and remote results.
+Implementation SHA: `413e0e5cf6630eeae990ba61cbf2524901e653b8`.
+Draft PR: https://github.com/KhoslaGA/Webhub4uInc./pull/5
+Verified implementation preview: https://webhub4u-r4g47pml0-khoslagas-projects.vercel.app
+The final local handoff records the final branch head and latest CI/deployment results after the lockfile correction.
 
 ## Completed outcomes
 
@@ -17,6 +20,8 @@ Implementation SHA, draft PR and verified preview are added after the branch pus
 
 20 Node delivery/adapter tests; 11 Chromium browser tests; 7 Python SEO-audit tests; production build; lint (2 existing warnings); 33 rendered sitemap pages (0 errors/warnings); 42 internal link targets (0 broken). Four widths: 320, 390, 768, 1440. See `VERIFICATION.md` for conditions, initial failures fixed and reproducible commands.
 
+Remote CI first rejected a missing optional TypeScript peer entry in the updated lockfile. The original locked entry was restored and a clean install/build was rerun; latest remote results are in the PR checks and final local handoff.
+
 ## Separate release states
 
 | State | Result |
@@ -25,7 +30,7 @@ Implementation SHA, draft PR and verified preview are added after the branch pus
 | Provider configured | NOT ESTABLISHED |
 | Real provider acceptance | NOT TESTED |
 | Inbox receipt | UNVERIFIED |
-| Remote preview | Pending branch push / verified result in local handoff |
+| Remote preview | READY; authenticated contact page returned 200 with noindex; robots disallows crawling |
 | Production deployed by this task | NO |
 
 Owner actions: review PR/preview, confirm delivery routing and provider setup, establish required `build`/review gates, then approve merge/release and one synthetic delivery check. Optional stock/logo work waits for original licensed inputs. Exact release/rollback steps are in `RELEASE_CHECKLIST.md`; provider outcomes and duplicate limits are in `EMAIL_SETUP.md`.
