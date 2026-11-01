@@ -29,7 +29,7 @@ export default function ProjectShowcase() {
           <p className={styles.eyebrow}>Your next project</p>
           <p className={styles.invitationTitle}>Let&apos;s build something<br /><em>worth showing.</em></p>
           <p>From a focused website to a connected software platform.</p>
-          <Link href="/contact">Discuss your project <span aria-hidden="true">↗</span></Link>
+          <Link href="/contact#project-enquiry">Start your project <span aria-hidden="true">↗</span></Link>
         </div>
       </div>
       <p className={styles.note}>Owned and built by Webhub4U. Actual interface captures from November 2026; shown to illustrate our design work. RateFamily&apos;s public sites and V2 development have separate release paths. Insurimple shows synthetic demo data.</p>

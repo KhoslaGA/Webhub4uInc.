@@ -1,6 +1,7 @@
 .wrap { background: var(--wh-bg); padding: clamp(60px,8vh,100px) 0 clamp(80px,11vh,140px); }
 .grid { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: clamp(30px,5vw,70px); align-items: start; }
 .formCol {
+  scroll-margin-top: 110px;
   background: var(--wh-bg);
   border: 1px solid var(--wh-border);
   border-radius: var(--wh-radius-lg);
@@ -19,3 +20,11 @@
   .grid { grid-template-columns: 1fr; }
   .formCol { margin-top: -60px; }
 }
+
+.nextSteps h2 { font-family: var(--wh-font-display); font-size: clamp(1.7rem,2.5vw,2.2rem); line-height: 1.2; margin: 16px 0 26px; color: var(--wh-text); }
+.nextSteps ol { padding: 0; margin: 0; list-style: none; counter-reset: steps; display: grid; gap: 24px; }
+.nextSteps li { position: relative; counter-increment: steps; padding-left: 42px; }
+.nextSteps li::before { content: counter(steps,decimal-leading-zero); position: absolute; left: 0; top: 0; color: var(--wh-accent-ink); font-family: var(--wh-font-display); font-size: 1.25rem; }
+.nextSteps strong { display: block; font-size: .9rem; font-weight: 600; color: var(--wh-text); margin-bottom: 6px; }
+.nextSteps span { display: block; color: var(--wh-text-muted); font-size: .84rem; line-height: 1.65; }
+.info .local { color: var(--wh-text-muted); font-size: .8rem; line-height: 1.7; margin: 0; }

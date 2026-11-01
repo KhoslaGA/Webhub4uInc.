@@ -50,11 +50,11 @@ const NavNew = () => {
             </Link>
           ))}
           <Link
-            href="/contact"
+            href="/contact#project-enquiry"
             className={`wh-btn wh-btn--primary ${styles.navCta}`}
             onClick={() => setOpen(false)}
           >
-            Discuss your project
+            Start your project
           </Link>
         </nav>
         <button

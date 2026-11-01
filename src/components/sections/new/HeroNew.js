@@ -88,8 +88,8 @@ const HeroNew = ({ services }) => {
             serving Toronto and the GTA.
           </p>
           <div className={styles.ctas}>
-            <Link href="/contact" className="wh-btn wh-btn--primary">
-              Discuss your project
+            <Link href="/contact#project-enquiry" className="wh-btn wh-btn--primary">
+              Start your project
             </Link>
             <Link href="/projects" className="wh-btn wh-btn--ghost-dark">
               See our portfolio

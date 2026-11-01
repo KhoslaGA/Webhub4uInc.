@@ -305,9 +305,8 @@ export default function AiReceptionist() {
               Hear exactly what your <span className="wh-em">callers would hear.</span>
             </h2>
             <p className={styles.demoP}>
-              Leave your number and we&apos;ll set up a live demo on your own
-              business — no slides, no pressure. You&apos;ll know in five minutes
-              whether it&apos;s right for you.
+              Email us a little about your business and the calls you want help
+              with. We&apos;ll discuss the right demo and agree a time together.
             </p>
             <p className={styles.demoPhone}>
               Prefer to talk to a person? <PhoneLink source="ai-receptionist-demo" />

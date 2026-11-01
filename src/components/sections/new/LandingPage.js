@@ -99,9 +99,8 @@ export default function LandingPage({ copy, source }) {
           <div className={styles.demoCopy}>
             <h2 className={`wh-display ${styles.demoH}`}>{copy.formHeading}</h2>
             <p className={styles.demoP}>
-              Leave your number and we&apos;ll set up a live demo on your own
-              business — five minutes, no pressure. You&apos;ll hear exactly
-              what your callers would hear.
+              Email us a little about your business and the calls you want help
+              with. We&apos;ll discuss the right demo and agree a time together.
             </p>
           </div>
           <div className={styles.formCard}>

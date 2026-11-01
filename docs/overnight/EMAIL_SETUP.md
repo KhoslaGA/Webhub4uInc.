@@ -2,6 +2,8 @@
 
 Reviewed 2026-11-01, America/Toronto. Code readiness is separate from provider configuration, acceptance and inbox receipt.
 
+**Current public flow:** The owner selected direct email on 2026-11-01. Contact and demo forms now prepare a mailto draft addressed to the public business inbox, with a copy-brief fallback. Visitors must review and send the email themselves. No lead conversion is fired for opening a draft. The provider APIs below are retained and tested for future integration; setting credentials alone does not switch the public UI back to automatic delivery. That change requires a separate, verified integration.
+
 ## Required server variables
 
 | Name | Purpose | Scope |
