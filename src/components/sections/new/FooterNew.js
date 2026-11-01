@@ -44,7 +44,7 @@ const FooterNew = () => (
           <p className={styles.colTitle}>Get in touch</p>
           <PhoneLink source="footer" />
           <a href="mailto:webhub4u@gmail.com">webhub4u@gmail.com</a>
-          <Link href="/contact">Book a free consult</Link>
+          <Link href="/contact">Request a consultation</Link>
         </div>
       </div>
       <div className={styles.cities}>

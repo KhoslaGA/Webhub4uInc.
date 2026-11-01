@@ -51,3 +51,7 @@ Thumbs.db
 # Generated SEO reports and Python cache
 /reports/
 __pycache__/
+
+# Browser QA outputs
+/playwright-report/
+/test-results/

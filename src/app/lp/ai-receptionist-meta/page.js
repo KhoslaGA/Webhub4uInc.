@@ -19,7 +19,7 @@ const COPY = {
   b: {
     eyebrow: "For GTA trades & local businesses",
     h1: "Your phone, answered 24/7 — even when you can't.",
-    sub: "On a ladder, driving, or with a customer? Your AI receptionist picks up, answers questions, and books appointments — so no lead ever hits voicemail.",
+    sub: "On a ladder, driving, or with a customer? Your AI receptionist picks up, answers questions, and books appointments — with escalation and fallback scoped to your business.",
     ctaPrimary: "Get my free demo",
     formHeading: "Set up your live demo.",
   },

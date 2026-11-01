@@ -12,7 +12,7 @@ import styles from "./LandingPage.module.css";
 const LP_PHONE = process.env.NEXT_PUBLIC_LP_TRACKING_PHONE || BUSINESS.phone;
 
 const VALUES = [
-  { t: "Answers 24/7", d: "Every call, day or night — never a voicemail again." },
+  { t: "Answers 24/7", d: "After-hours call handling, with escalation and fallback agreed before launch." },
   { t: "Texts back instantly", d: "Missed calls get a friendly text in seconds, so the lead stays warm." },
   { t: "Books the job", d: "Appointments drop straight into your calendar while you work." },
 ];

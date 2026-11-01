@@ -6,7 +6,7 @@ import { SplitHeading, RevealText, useStagger } from "./homeMotion";
 import styles from "./AIShowcaseNew.module.css";
 
 const ITEMS = [
-  { stat: "Never miss a call", title: "AI Receptionist", desc: "Most small businesses lose jobs to voicemail. Your AI receptionist answers after-hours calls, texts back missed ones, and books the appointment before your competitor picks up." },
+  { stat: "After-hours enquiries", title: "AI Receptionist", desc: "Explore after-hours enquiry handling and follow-up options, scoped to your tools and workflow." },
   { stat: "24/7 on your website", title: "AI Chat Assistant", desc: "Trained on your services, pricing, and service area. It answers the questions visitors actually ask and turns them into booked leads while you sleep." },
   { stat: "Hours back every week", title: "Workflow Automation", desc: "Quotes, invoices, review requests, and follow-ups that send themselves. We wire your tools together so the busywork runs without you." },
 ];

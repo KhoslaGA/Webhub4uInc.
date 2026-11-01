@@ -13,6 +13,7 @@ const inter = Inter({
 });
 
 export const metadata = {
+  ...(process.env.VERCEL_ENV === "preview" ? { robots: { index: false, follow: false } } : {}),
   metadataBase: new URL(BUSINESS.url),
   title: "Webhub4U — Web Development, SEO & Custom Software",
   description:
@@ -45,7 +46,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.className}`}>
         <SmoothScroll>{children}</SmoothScroll>
-        <Analytics />
+        {process.env.VERCEL_ENV !== "preview" && <Analytics />}
       </body>
     </html>
   );

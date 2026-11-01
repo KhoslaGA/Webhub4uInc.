@@ -1,0 +1,16 @@
+# Asset register
+
+Review 2026-11-01. The original deployed brand assets and 3D treatment are retained. No purchased stock, hotlinked preview, watermark removal or new logo replacement was used.
+
+| Placement | Existing asset | Candidate | Creator/source | Visual reason | Licence evidence | Approval | Crop/focal point | Alt text | Implementation | Source URL |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Site navigation | `public/logo-nav-t.png` | — | Existing owner brand asset | Established identity | Existing repository use; no new rights claim | Preserve | Existing proportions | Webhub4U | Unchanged | — |
+| Homepage / closing CTA | `LogoGlobe` / existing CSS | — | Existing project artwork | Brand continuity | Existing project source | Preserve | Existing responsive canvas | Decorative | Unchanged | — |
+| GTA banner / local introduction | Text-led design | 75031817 | Depositphotos listing | Toronto context | Original bytes/receipt not located | Await licensed original | Skyline, inspect before cropping | Determine from actual original | No stock inserted; text-led draft supplied | https://depositphotos.com/photo/toronto-skyline-at-dusk-75031817.html |
+| Development process | Existing text/layout | 397950282 | Depositphotos listing | Planning context | Original bytes/receipt not located | Await licensed original | Inspect original first | Determine from actual original | Existing layout preserved | https://depositphotos.com/photo/website-designer-creative-planning-application-developer-development-draft-sketch-drawing-397950282.html |
+| Supporting services | Existing text/layout | 204648590 | Depositphotos listing | Collaboration context, never “our team” | Original bytes/receipt not located | Await licensed original | Inspect original first | Describe stock scene without identity claim | Not used | https://depositphotos.com/photo/web-design-team-designers-working-computer-office-developing-web-project-204648590.html |
+| Website-brief carousel | Original typography | 742786224 | Depositphotos listing | Optional notebook background | Original bytes/receipt not located | Await licensed original | Inspect original first | Determine from actual original | Text-led alternative supplied | https://depositphotos.com/photo/hands-paper-notebook-top-view-desk-planning-writing-brainstorming-ideas-742786224.html |
+| TopRates draft spotlight | Actual public website capture | — | Owner-operated product | Demonstrates navigation/reader journey | Owner-requested public capture | Draft review | Full first viewport | TopRates public navigation and Ontario guide | Local handoff; capture 2026-11-01 | https://www.toprates.ca |
+| Insurimple draft spotlight | Actual local fixture capture | — | Owner-operated product | Demonstrates task workflow | Owner-requested synthetic demo capture | Draft review | Workflow viewport | Insurimple activities in development using fixture data | Local handoff, labelled demo | — |
+
+No confirmed original Webhub4U vector was found in the checkout. Old template SVG icons are not treated as the original logo. Separate vector refinements remain dependent on the actual editable original. Stock candidates were not accepted as licensed or suitable merely because their URLs were supplied.

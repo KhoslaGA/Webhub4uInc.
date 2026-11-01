@@ -17,7 +17,7 @@ export const LOCATIONS = [
       "Websites, local SEO, and AI receptionists for Brampton businesses — from Bramalea to Mount Pleasant. Based right here in Brampton, serving the GTA.",
     intro: [
       "Webhub4U is based right here in Brampton, so the local market isn't an abstraction to us — it's our own backyard. From the trades and trucking outfits out by the 410 and Steeles, to the clinics and independent shops across Bramalea, Springdale and Mount Pleasant, to the family businesses around the Four Corners downtown, Brampton runs on busy operators who are doing the work, not sitting by the phone. That's exactly the gap our AI receptionist closes.",
-      "Brampton is one of the youngest, fastest-growing cities in Canada, and it's fiercely competitive for local trades, home services and health practices. A dated website and a Google profile nobody's touched in two years won't win the customer in Castlemore or Heart Lake who's choosing between you and three others on their phone. We build fast, modern sites that rank, set up the AI tools that catch every call, and run the local SEO that gets Brampton businesses into the map pack — the same playbook we use to rank ourselves.",
+      "Brampton is one of the youngest, fastest-growing cities in Canada, and it's fiercely competitive for local trades, home services and health practices. A dated website and a Google profile nobody's touched in two years won't win the customer in Castlemore or Heart Lake who's choosing between you and three others on their phone. We build fast, modern sites that rank, set up the AI tools that support after-hours enquiries, and run the local SEO that gets Brampton businesses into the map pack — the same playbook we use to rank ourselves.",
     ],
     faqs: [
       {
@@ -98,7 +98,7 @@ export const LOCATIONS = [
       "Web design, AI receptionists, and local SEO for Vaughan businesses — Woodbridge, Maple, Concord, and the growing Vaughan Metropolitan Centre.",
     intro: [
       "Vaughan is builder country. From the construction, contracting and home-services companies rooted in Woodbridge and Concord, to the trades and suppliers that power the region's relentless development, this is a city where a huge share of business is done by referral and by phone — and where a missed call is a missed job worth real money. That's the first thing we fix for Vaughan clients: an AI receptionist and missed-call text-back so no lead slips through while you're on site.",
-      "The city is also changing fast, with the Vaughan Metropolitan Centre turning into a genuine downtown and new professional practices, clinics and shops opening across Maple, Thornhill and Kleinburg. For them, credibility online is everything — a polished, quick website and a Google profile that reflects the quality of the work. We handle both sides of Vaughan: the trades that need to catch every call, and the newer businesses that need to look established from day one.",
+      "The city is also changing fast, with the Vaughan Metropolitan Centre turning into a genuine downtown and new professional practices, clinics and shops opening across Maple, Thornhill and Kleinburg. For them, credibility online is everything — a polished, quick website and a Google profile that reflects the quality of the work. We handle both sides of Vaughan: the trades that need to support after-hours enquiries, and the newer businesses that need to look established from day one.",
     ],
     faqs: [
       {
@@ -179,7 +179,7 @@ export const LOCATIONS = [
       "AI receptionists, web design, and local SEO for Etobicoke businesses — from The Kingsway to Humber Bay Shores. Sites built to rank and convert.",
     intro: [
       "Etobicoke blends established, affluent neighbourhoods with a fast-growing waterfront, and its businesses reflect that mix. Along The Kingsway and through Islington Village you'll find long-standing professional practices, clinics and boutique retail that serve a discerning, higher-value clientele. Down toward Mimico, Long Branch and the Humber Bay Shores condos, there's a wave of newer restaurants, services and trades chasing a rapidly expanding local population. Both need to be found online, and both need to look the part.",
-      "For the established Kingsway practice, we build the kind of clean, credible site and review-backed Google profile that reassures a careful customer. For the newer Humber Bay or Mimico business, we focus on getting visible fast and never missing a lead — AI receptionist, missed-call text-back, and a Google Business Profile tuned to the neighbourhood. Etobicoke customers are close enough to downtown to have options, so speed, polish and responsiveness are what keep the work here instead of drifting into the city.",
+      "For the established Kingsway practice, we build the kind of clean, credible site and review-backed Google profile that reassures a careful customer. For the newer Humber Bay or Mimico business, we focus on getting visible fast and improving enquiry handling — AI receptionist, missed-call text-back, and a Google Business Profile tuned to the neighbourhood. Etobicoke customers are close enough to downtown to have options, so speed, polish and responsiveness are what keep the work here instead of drifting into the city.",
     ],
     faqs: [
       {
@@ -260,7 +260,7 @@ export const LOCATIONS = [
       "Web design, AI receptionists, and local SEO for Oakville businesses — Bronte to downtown Lakeshore. Premium sites for a premium market.",
     intro: [
       "Oakville is one of the most affluent markets in the country, and it shows in the businesses that serve it: upscale boutiques and restaurants around downtown Lakeshore and Bronte, high-end home-services and trades working on Glen Abbey and Old Oakville properties, and professional and wellness practices catering to a customer who expects the best. In a market like this, your online presence isn't a formality — it's a direct signal of whether you belong in the conversation.",
-      "That's why we build to a premium standard for Oakville clients. A beautifully designed, genuinely fast website that matches the quality of the neighbourhood; a Google Business Profile that turns Oakville's review-driven word of mouth into search visibility; and AI receptionist and text-back tools that make sure a high-value enquiry never goes unanswered. For a trades or home-services company especially, a single Oakville project can be worth a great deal — which makes catching every call the difference between a strong month and a missed one.",
+      "That's why we build to a premium standard for Oakville clients. A beautifully designed, genuinely fast website that matches the quality of the neighbourhood; a Google Business Profile that turns Oakville's review-driven word of mouth into search visibility; and AI receptionist and text-back tools that make sure a high-value enquiry has a clear follow-up path. For a trades or home-services company especially, a single Oakville project can be worth a great deal — which makes catching every call the difference between a strong month and a missed one.",
     ],
     faqs: [
       {
@@ -296,7 +296,7 @@ export const LOCATIONS = [
       },
       {
         q: "I'm a growing service business in Alton Village — where do I start?",
-        a: "Start with never missing a lead: AI receptionist and missed-call text-back on your existing number, paired with a Burlington landing page so you show up as the area fills in around you.",
+        a: "Start with improving enquiry handling: AI receptionist and missed-call text-back on your existing number, paired with a Burlington landing page so you show up as the area fills in around you.",
       },
       {
         q: "Do you work with downtown Brant Street businesses?",

@@ -10,7 +10,7 @@ export const SERVICES = [
     href: "/ai-receptionist",
     tag: "AI",
     short:
-      "Answers every call, texts back missed ones, and books jobs into your calendar — 24/7.",
+      "After-hours call handling, missed-call follow-up and appointment requests, scoped to your tools.",
     priceFrom: "$397/mo",
     painPoints: [
       "Calls hitting voicemail while you're on the job",
@@ -30,7 +30,7 @@ export const SERVICES = [
     href: "/missed-call-text-back",
     tag: "AI",
     short:
-      "Every missed call gets an instant, friendly text so the lead never goes cold.",
+      "Configured missed-call follow-up helps customers take the next step.",
     priceFrom: "$197/mo",
     painPoints: [
       "Missed calls that never call back",

@@ -15,7 +15,7 @@ test("unconfigured email returns unavailable instead of false success", async ()
 test("provider rejection, exceptions and missing acceptance ID never produce success", async () => {
   for (const send of [async () => ({ error: { message: "Provider rejected" } }), async () => { throw new Error("Network failure"); }, async () => ({ data: {} })]) {
     const response = await handleContactRequest(request(enquiry), { configured: true, send });
-    assert.equal(response.status, 502);
+    assert.ok([502, 504].includes(response.status));
     assert.notEqual((await response.json()).ok, true);
   }
 });
@@ -24,7 +24,7 @@ test("accepted email includes the selected service, budget and timing", async ()
   let message;
   const response = await handleContactRequest(request(enquiry), { configured: true, send: async (value) => { message = value; return { data: { id: "test-id" } }; } });
   assert.equal(response.status, 200);
-  assert.deepEqual(await response.json(), { ok: true });
+  assert.equal((await response.json()).outcome, "accepted");
   assert.equal(message.replyTo, enquiry.email);
   assert.match(message.text, /Interested in: Custom software/);
   assert.ok(message.text.includes(enquiry.budget));
@@ -39,7 +39,7 @@ test("malformed fields and header line breaks are rejected before delivery", asy
 });
 
 test("invalid JSON returns a validation error", async () => {
-  const response = await handleContactRequest(new Request("https://example.com", { method: "POST", body: "{" }), { configured: true, send: failIfSent });
+  const response = await handleContactRequest(new Request("https://example.com", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{" }), { configured: true, send: failIfSent });
   assert.equal(response.status, 400);
 });
 

@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { submitEnquiry } from "@/lib/submitEnquiry.mjs";
 import styles from "./ContactForm.module.css";
 
 import { CONTACT_SERVICES, BUDGETS, TIMINGS, contactService } from "@/lib/contactOptions.mjs";
@@ -19,42 +20,40 @@ const ContactForm = ({ initialService = "not-sure" }) => {
 
   const [error, setError] = useState("");
 
+  const inFlight = useRef(false);
+  const attempt = useRef({});
   const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
   const submit = async (e) => {
     e.preventDefault();
+    if (inFlight.current) return;
+    inFlight.current = true;
     setStatus("sending");
     setError("");
     try {
-      const res = await fetch("/api/sendEmail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const result = await res.json();
-      if (!res.ok || result.ok !== true) throw new Error(result.error || "We couldn't send your enquiry. Please try again or email us directly.");
+      await submitEnquiry("/api/sendEmail", form, attempt.current);
       setStatus("ok");
     } catch (err) {
-      setError(err.message || "We couldn’t send your enquiry. Please try again or email us directly.");
+      setError(err.message || "We couldn't confirm delivery. Please contact us before retrying.");
       setStatus("error");
-    }
+    } finally { inFlight.current = false; }
   };
 
   if (status === "ok") {
     return (
-      <div className={`wh ${styles.success}`} role="status">
+      <div className={`wh ${styles.success}`} role="status" tabIndex={-1} ref={(node) => node?.focus()}>
         <p className={styles.successIcon}>✓</p>
         <h3>Thanks, {form.name.split(" ")[0] || "there"}!</h3>
         <p>
-          Your message is in. We&apos;ll get back to you within one business
-          day — usually much sooner.
+          Your enquiry was accepted for delivery. We’ll review your project details and follow up with next steps.
         </p>
       </div>
     );
   }
 
   return (
-    <form className={`wh ${styles.form}`} onSubmit={submit}>
+    <form className={`wh ${styles.form}`} onSubmit={submit} aria-busy={status === "sending"}>
+      <fieldset disabled={status === "sending"} className={styles.fields}>
       <div className={styles.row}>
         <label>
           Name
@@ -112,6 +111,8 @@ const ContactForm = ({ initialService = "not-sure" }) => {
       >
         {status === "sending" ? "Sending…" : "Send message"}
       </button>
+      </fieldset>
+      <p className={styles.pending} role="status">{status === "sending" ? "Sending your request…" : ""}</p>
       {status === "error" && (
         <p className={styles.err} role="alert">
           {error} <a href="mailto:webhub4u@gmail.com">webhub4u@gmail.com</a>
