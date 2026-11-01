@@ -1,13 +1,14 @@
 import { BUSINESS } from "@/lib/business";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import "./theme.css";
 import SmoothScroll from "@/components/sections/new/SmoothScroll";
 import Analytics from "@/components/analytics/Analytics";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+const inter = localFont({
+  src: "./fonts/InterVariable.woff2",
+  weight: "300 900",
+  style: "normal",
   display: "swap",
   variable: "--fontInter",
 });

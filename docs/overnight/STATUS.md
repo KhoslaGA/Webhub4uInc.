@@ -17,6 +17,7 @@ associated with this repository and `main` is its production branch.
 - [x] Final local validation and sanitized release/environment documentation.
 - [x] Draft PR #5 created; implementation preview READY with verified noindex/robots.
 - [x] Initial CI lockfile failure diagnosed; original optional peer entry restored. Final remote result is recorded in the local morning handoff.
+- [x] Subsequent CI font-loader failure diagnosed; existing Inter family bundled with its open licence and pinned provenance. Final build/browser/CI results are in the local handoff.
 
 Only sanitized implementation findings belong in this public repository.
 Private evidence, account diagnostics and fixture captures remain in the local
