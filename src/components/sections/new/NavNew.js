@@ -6,7 +6,7 @@ import styles from "./NavNew.module.css";
 
 const LINKS = [
   { label: "Services", href: "/services" },
-  { label: "Our work", href: "/projects" },
+  { label: "Portfolio", href: "/projects" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Process", href: "/#process" },
   { label: "FAQ", href: "/#faq" },

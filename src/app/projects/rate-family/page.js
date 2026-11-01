@@ -5,6 +5,8 @@ import CtaNew from "@/components/sections/new/CtaNew";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbLd } from "@/lib/schema";
 import styles from "@/components/sections/new/CaseStudy.module.css";
+import ProjectCapture from "@/components/sections/new/ProjectCapture";
+import { PORTFOLIO } from "@/data/portfolio";
 
 export const metadata = {
   title: "RateFamily: Web Development & SEO Case Study | Webhub4U",
@@ -86,14 +88,20 @@ export default function RateFamilyCaseStudy() {
       />
 
       <PageHero
-        eyebrow="Case study 02 · Built and operated in-house"
+        eyebrow="RateFamily · Built and operated by Webhub4U"
         title={
           <>
-            The Rate Family: <span className="wh-em">public websites and a shared V2 platform.</span>
+            Four brands. <span className="wh-em">One ambitious vision.</span>
           </>
         }
-        sub="An owner-operated network with distinct brand roles: TopRates is the education-led hub; LifeRate, TermRates and HealthRate are intended for licensed sales and quoting. The public websites and shared V2 development application are separate. Live integrations must be verified for each product."
+        sub="Web design, content architecture, technical SEO and platform engineering for a Canadian finance and insurance network. Built and operated in-house, with public websites and a separate shared V2 development application."
       />
+
+      <section className={`wh ${styles.showcase}`} aria-label="RateFamily product capture">
+        <div className="wh-inner"><ProjectCapture project={PORTFOLIO[0]} large />
+          <div className={styles.projectBrief}><div><span>Our role</span><strong>Design, development & technical SEO</strong></div><div><span>Project scope</span><strong>4 brand identities + shared V2 development</strong></div><div><span>Explore</span><a href="https://www.toprates.ca" target="_blank" rel="noopener noreferrer">Visit the public TopRates website ↗</a></div></div>
+        </div>
+      </section>
 
       {/* ---------- CHALLENGE ---------- */}
       <section className={`wh ${styles.light}`}>

@@ -92,7 +92,7 @@ const HeroNew = ({ services }) => {
               Discuss your project
             </Link>
             <Link href="/projects" className="wh-btn wh-btn--ghost-dark">
-              Explore our work
+              See our portfolio
             </Link>
           </div>
           <ul className={styles.pillars}>
