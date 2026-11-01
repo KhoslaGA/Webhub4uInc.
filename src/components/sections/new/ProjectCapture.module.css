@@ -1,0 +1,12 @@
+.capture { margin: 0; min-width: 0; border: 1px solid #ccd5dd; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 24px 60px #0f375b1c; }
+.bar { display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: #edf1f4; color: #475566; font-size: .7rem; letter-spacing: .02em; }
+.dots { display: flex; gap: 5px; flex-shrink: 0; }
+.dots i { height: 6px; width: 6px; border-radius: 50%; background: #9eabb7; }
+.imageLink { display: block; position: relative; color: white; overflow: hidden; }
+.image { display: block; width: 100%; height: auto; }
+.expand { position: absolute; right: 12px; bottom: 12px; padding: 8px 12px; background: #0b253ce8; border-radius: 6px; font-size: .7rem; font-weight: 600; }
+.imageLink:focus-visible { outline: 3px solid #0e7ea8; outline-offset: -4px; }
+.capture figcaption { padding: 12px 16px; color: #566373; border-top: 1px solid #e3e8ee; font-size: .7rem; line-height: 1.5; }
+.large { max-width: 1100px; margin: 0 auto; }
+.large figcaption { font-size: .8rem; }
+@media (max-width: 380px) { .bar { gap: 8px; padding: 10px; font-size: .65rem; } .capture figcaption { padding: 10px; } .expand { right: 8px; bottom: 8px; padding: 6px 9px; font-size: .65rem; } }

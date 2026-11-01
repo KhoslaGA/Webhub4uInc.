@@ -5,6 +5,8 @@ import CtaNew from "@/components/sections/new/CtaNew";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbLd } from "@/lib/schema";
 import styles from "@/components/sections/new/CaseStudy.module.css";
+import ProjectCapture from "@/components/sections/new/ProjectCapture";
+import { PORTFOLIO } from "@/data/portfolio";
 
 export const metadata = {
   title: "Insurimple Platform & BMS: Software Engineering | Webhub4U",
@@ -25,9 +27,14 @@ export default function InsurimpleCaseStudy() {
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Work", path: "/projects" }, { name: "Insurimple", path: "/projects/insurimple" }])} />
       <PageHero
         eyebrow="Owned engineering project · In development"
-        title={<>Insurimple: software for <span className="wh-em">complex operations.</span></>}
-        sub="An insurance operations platform and broker management system. Explore the engineering behind connected workflows, controlled access and traceable business records."
+        title={<>Built for the work <span className="wh-em">behind the policy.</span></>}
+        sub="Insurimple brings product design and software engineering to insurance operations: CRM, follow-up, policy workflows and review. An owned platform and broker management system in active development."
       />
+      <section className={`wh ${styles.showcase}`} aria-label="Insurimple development capture">
+        <div className="wh-inner"><ProjectCapture project={PORTFOLIO[1]} large />
+          <div className={styles.projectBrief}><div><span>Our role</span><strong>Product design & software engineering</strong></div><div><span>Demonstrated workflow</span><strong>Activities, ownership & follow-up</strong></div><div><span>Project status</span><strong>In development · Synthetic demo data</strong></div></div>
+        </div>
+      </section>
       <section className={`wh ${styles.light}`}>
         <div className={`wh-inner ${styles.split}`}>
           <div><p className="wh-eyebrow">The challenge</p><h2 className={`wh-display ${styles.h2}`}>Connect the workflow. <span className="wh-em">Keep ownership clear.</span></h2></div>

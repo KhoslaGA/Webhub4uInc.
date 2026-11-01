@@ -1,4 +1,9 @@
 /* ---------- section surfaces ---------- */
+.showcase { background: var(--wh-bg-soft); padding: clamp(40px,6vw,75px) 0; }
+.projectBrief { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 30px; margin-top: 36px; padding-top: 26px; border-top: 1px solid var(--wh-border); }
+.projectBrief span { display: block; margin-bottom: 8px; color: var(--wh-text-muted); text-transform: uppercase; font-size: .67rem; letter-spacing: .12em; }
+.projectBrief strong,.projectBrief a { font-size: .87rem; font-weight: 550; line-height: 1.6; }
+.projectBrief a { color: var(--wh-accent-2-ink); text-underline-offset: 4px; }
 .light {
   background: var(--wh-bg);
   padding: clamp(64px, 9vh, 110px) 0;
@@ -234,6 +239,7 @@
   }
 }
 @media (max-width: 760px) {
+  .projectBrief { grid-template-columns: 1fr; gap: 22px; }
   .split,
   .grid2,
   .grid3 {
