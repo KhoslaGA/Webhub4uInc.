@@ -1,41 +1,38 @@
+import Image from "next/image";
 import Link from "next/link";
-import { PORTFOLIO } from "@/data/portfolio";
-import ProjectCapture from "./ProjectCapture";
+import { PORTFOLIO_ITEMS } from "@/data/portfolio";
 import styles from "./ProjectShowcase.module.css";
 
 export default function ProjectShowcase() {
   return (
-    <div className={styles.projects}>
-      {PORTFOLIO.map((project, index) => (
-        <article key={project.slug} className={`${styles.project} ${index === 1 ? styles.dark : ""}`} aria-labelledby={`project-${project.slug}`}>
-          <div className={styles.masthead}>
-            <p className={styles.category}><span aria-hidden="true">0{index + 1}</span>{project.category}</p>
-            <p className={styles.status}><span aria-hidden="true" />{project.status}</p>
-          </div>
-          <div className={styles.content}>
-            <div className={styles.story}>
-              <p className={styles.name}>{project.name}</p>
-              <h3 id={`project-${project.slug}`}>{project.headline}</h3>
+    <div>
+      <div className={styles.projects}>
+        {PORTFOLIO_ITEMS.map(project => (
+          <article key={project.slug} className={styles.project} aria-labelledby={`project-${project.slug}`}>
+            <Link href={`/projects/${project.caseStudy}`} className={styles.preview} aria-label={`Explore ${project.name} in the ${project.caseStudy === "rate-family" ? "RateFamily" : "Insurimple"} case study`}>
+              <Image src={project.image} alt={project.alt} width={project.width} height={project.height} sizes="(max-width: 580px) 100vw, (max-width: 1000px) 50vw, 380px" quality={85} className={styles.image} />
+              <span className={styles.previewArrow} aria-hidden="true">↗</span>
+            </Link>
+            <div className={styles.content}>
+              <p className={styles.status}>{project.status}</p>
+              <h3 id={`project-${project.slug}`}>{project.name}</h3>
+              <p className={styles.category}>{project.category}</p>
               <p className={styles.description}>{project.description}</p>
-              <dl className={styles.scope}>
-                {project.scope.map(item => <div key={item.title}><dt>{item.title}</dt><dd>{item.text}</dd></div>)}
-              </dl>
               <div className={styles.links}>
-                <Link href={`/projects/${project.slug}`} className={styles.primary}>{project.linkLabel}<span aria-hidden="true">↗</span></Link>
-                {project.live && <a href={project.live.href} target="_blank" rel="noopener noreferrer" className={styles.secondary}>{project.live.label} ↗</a>}
+                <Link href={`/projects/${project.caseStudy}`} aria-label={`${project.name} case study`}>Case study <span aria-hidden="true">↗</span></Link>
+                {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${project.name} (opens in a new tab)`}>Visit site <span aria-hidden="true">↗</span></a>}
               </div>
             </div>
-            <div className={styles.visual}>
-              <p className={styles.visualLabel}>{project.imageLabel}</p>
-              <ProjectCapture project={project} />
-              <ul className={styles.highlights} aria-label={project.slug === "rate-family" ? "The four RateFamily brands" : "Insurimple focus areas"}>
-                {project.highlights.map(item => <li key={item}>{item}</li>)}
-              </ul>
-            </div>
-          </div>
-          <p className={styles.note}>Built and owned by Webhub4U. {project.note}</p>
-        </article>
-      ))}
+          </article>
+        ))}
+        <div className={styles.invitation}>
+          <p className={styles.eyebrow}>Your next project</p>
+          <p className={styles.invitationTitle}>Let&apos;s build something<br /><em>worth showing.</em></p>
+          <p>From a focused website to a connected software platform.</p>
+          <Link href="/contact">Discuss your project <span aria-hidden="true">↗</span></Link>
+        </div>
+      </div>
+      <p className={styles.note}>Owned and built by Webhub4U. Actual interface captures from November 2026; shown to illustrate our design work. RateFamily&apos;s public sites and V2 development have separate release paths. Insurimple shows synthetic demo data.</p>
     </div>
   );
 }

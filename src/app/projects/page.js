@@ -21,7 +21,7 @@ export default function Projects() {
       />
       <section className={`wh ${styles.wrap}`}>
         <div className="wh-inner">
-          <div className={styles.intro}><div><p className="wh-eyebrow">Selected projects</p><h2 className="wh-display">See the work.<br /><span className="wh-em">Understand the thinking.</span></h2></div><p>We own these products, from the interface decisions to the code behind them. Each case study shows what we built, why it matters and where the product stands today.</p></div>
+          <div className={styles.intro}><div><p className="wh-eyebrow">Five projects · One team</p><h2 className="wh-display">The whole portfolio.<br /><span className="wh-em">All in one place.</span></h2></div><p>Explore each brand below, visit the public websites, or open a case study for the design and engineering behind the product.</p></div>
           <ProjectShowcase />
         </div>
       </section>
