@@ -1,0 +1,99 @@
+/* Scroll length comes from the --seq-h custom property set inline (heightVh). */
+.wrap {
+  position: relative;
+  height: var(--seq-h, 300vh);
+  background: var(--wh-bg-dark);
+  color: var(--wh-text-inv);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--wh-bg-dark);
+}
+
+.media,
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.media {
+  object-fit: cover;
+}
+
+/* Canvas sits over the poster and only becomes opaque once a frame is drawn,
+   so the poster (server-rendered) is what visitors see while frames load. */
+.canvas {
+  opacity: 0;
+}
+.canvasReady {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  pointer-events: none;
+}
+.overlay > * {
+  pointer-events: auto;
+}
+
+/* Always visible — never behind an animation. */
+.caption {
+  position: absolute;
+  left: var(--wh-gutter);
+  bottom: 18px;
+  z-index: 2;
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(11, 14, 23, 0.72);
+  color: var(--wh-text-inv);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+/* Reduced motion (CSS first, so there is no tall empty scroll even before JS). */
+.static {
+  height: auto;
+}
+.static .caption {
+  top: 14px;
+  bottom: auto; /* keep clear of the video controls */
+}
+.static .stage {
+  position: relative;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  max-height: 85vh;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap {
+    height: auto;
+  }
+  .stage {
+    position: relative;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    max-height: 85vh;
+  }
+  .caption {
+    top: 14px;
+    bottom: auto;
+  }
+}
