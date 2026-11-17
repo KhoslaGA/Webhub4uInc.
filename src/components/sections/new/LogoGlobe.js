@@ -7,6 +7,7 @@ import {
 } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onReadyFor3D } from "./defer3d";
 import styles from "./LogoGlobe.module.css";
 
 /**
@@ -109,7 +110,8 @@ const LogoGlobe = forwardRef(({ size = 460, variant = "cta" }, ref) => {
     let raf;
     let cleanup = () => {};
 
-    import("three")
+    const init = () =>
+      import("three")
       .then((THREE) => {
         if (disposed) return;
 
@@ -452,8 +454,11 @@ const LogoGlobe = forwardRef(({ size = 460, variant = "cta" }, ref) => {
       })
       .catch(() => {});
 
+    const cancelGate = onReadyFor3D(mount, init, { mode: hero ? "idle" : "visible" });
+
     return () => {
       disposed = true;
+      cancelGate();
       cleanup();
     };
   }, [size, variant]);
