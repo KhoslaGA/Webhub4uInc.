@@ -5,6 +5,7 @@ export const CONTACT_SERVICES = [
   { value: "ai-receptionist", label: "AI receptionist" },
   { value: "ai-chatbot", label: "AI chatbot" },
   { value: "automation", label: "Business automation" },
+  { value: "real-estate-websites", label: "Property walkthrough website" },
   { value: "not-sure", label: "Not sure yet" },
 ];
 export const BUDGETS = ["Not decided yet", "Under C$2,500", "C$2,500–5,000", "C$5,000–10,000", "C$10,000–25,000", "C$25,000+"];

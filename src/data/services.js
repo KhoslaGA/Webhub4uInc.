@@ -1,7 +1,12 @@
+import { REAL_ESTATE } from "@/lib/business";
+
 /**
  * Canonical service definitions — the single source for the services grid on
  * city pages, the /locations hub, and (later) /services/[service] pages.
  * Keyword targets per D3 §4.3.
+ *
+ * `priceFrom` may be null (no published price) — consumers must not render it
+ * then. `listed: false` keeps a service out of public grids.
  */
 export const SERVICES = [
   {
@@ -94,6 +99,25 @@ export const SERVICES = [
       "Full profile build + category tuning",
       "Weekly posts and Q&A seeding",
       "Automated review requests",
+    ],
+  },
+  {
+    slug: "real-estate-websites",
+    name: "Cinematic Property Websites",
+    href: "/real-estate-websites",
+    tag: "Web",
+    short:
+      "Scroll-driven walkthroughs made from your ordered property photos, on a fast site you own.",
+    priceFrom: REAL_ESTATE.priceFrom, // null until set in business.js
+    listed: REAL_ESTATE.indexable, // hidden from grids while the page is noindex
+    painPoints: [
+      "Listing photos that don't show how the spaces connect",
+      "A rental or project site that looks like every other template",
+    ],
+    deliverables: [
+      "A walkthrough sequence built from your photos",
+      "A fast, mobile-ready property site",
+      "Booking-engine or enquiry embed, scoped per property",
     ],
   },
 ];

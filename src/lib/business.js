@@ -27,6 +27,23 @@ export const OFFER = {
 };
 
 /**
+ * Cinematic property websites (/real-estate-websites). Operator-controlled:
+ *  - indexable: false keeps the page noindex, out of the sitemap and out of
+ *    the services grid on city pages. Flip to true only once a real demo
+ *    sequence exists in public/demos/<demoSlug>/.
+ *  - demoSlug: folder written by `node scripts/frames.mjs <clip> <slug>`.
+ *  - demoCaption: always-visible label on the demo. Keep it accurate to the clip
+ *    (e.g. "Concept rendering" for AI-generated footage of an unbuilt space).
+ *  - priceFrom: null = no price shown anywhere; the page says "Scoped per property".
+ */
+export const REAL_ESTATE = {
+  indexable: false,
+  demoSlug: "concept-villa",
+  demoCaption: "Concept rendering · not a client property",
+  priceFrom: null,
+};
+
+/**
  * Blog author for E-E-A-T (Article schema + author box). For stronger E-E-A-T,
  * set the founder's REAL name and add a headshot at /public/author.jpg, then
  * point `image` at it — Google weights a real, credentialed author.
