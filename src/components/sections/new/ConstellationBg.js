@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { onReadyFor3D } from "./defer3d";
 import styles from "./ConstellationBg.module.css";
 
 /**
@@ -27,7 +28,8 @@ const ConstellationBg = ({ density = 1, className = "" }) => {
     let raf;
     let cleanup = () => {};
 
-    import("three")
+    const init = () =>
+      import("three")
       .then((THREE) => {
         if (disposed) return;
 
@@ -224,8 +226,11 @@ const ConstellationBg = ({ density = 1, className = "" }) => {
       })
       .catch(() => {});
 
+    const cancelGate = onReadyFor3D(mount, init, { mode: "idle" });
+
     return () => {
       disposed = true;
+      cancelGate();
       cleanup();
     };
   }, [density]);
