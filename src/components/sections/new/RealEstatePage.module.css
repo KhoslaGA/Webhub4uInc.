@@ -1,0 +1,214 @@
+/* /real-estate-websites — conversion page: no scroll-reveal, CTAs always visible. */
+
+/* shared */
+.h2 {
+  font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+  margin: 20px 0 18px;
+  max-width: 22ch;
+}
+.lead {
+  color: var(--wh-text-muted);
+  max-width: 56ch;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ---------- HERO (inside PageHero) ---------- */
+.heroCtas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.heroNote {
+  margin: 22px 0 0;
+  font-size: 0.85rem;
+  color: var(--wh-text-inv-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- DEMO ---------- */
+.demoIntro {
+  background: var(--wh-bg-soft);
+  padding: clamp(60px, 9vh, 100px) 0 clamp(40px, 6vh, 64px);
+  scroll-margin-top: 84px;
+}
+
+/* ---------- STATIC EXPLAINER (no demo frames yet) ---------- */
+.explainer {
+  background: var(--wh-bg-soft);
+  padding: clamp(70px, 10vh, 120px) 0;
+  scroll-margin-top: 84px;
+}
+.behaviour {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 36px;
+}
+.behaviour article {
+  background: var(--wh-bg);
+  border: 1px solid var(--wh-border);
+  border-radius: var(--wh-radius-lg);
+  padding: 28px 24px;
+}
+.behaviour h3 {
+  font-size: 1.1rem;
+  font-weight: 650;
+  margin: 0 0 10px;
+  color: var(--wh-text);
+}
+.behaviour p {
+  color: var(--wh-text-muted);
+  line-height: 1.65;
+  margin: 0;
+  font-size: 0.94rem;
+}
+.explainerCta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid var(--wh-border);
+}
+.explainerCta p {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--wh-text-muted);
+  line-height: 1.65;
+}
+
+/* ---------- WHO IT'S FOR ---------- */
+.who {
+  background: var(--wh-bg);
+  padding: clamp(70px, 10vh, 120px) 0;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 40px;
+}
+.card {
+  border: 1px solid var(--wh-border);
+  border-radius: var(--wh-radius-lg);
+  padding: 30px 26px;
+}
+.card h3 {
+  font-family: var(--wh-font-display);
+  font-weight: 450;
+  font-size: 1.4rem;
+  margin: 0 0 12px;
+  color: var(--wh-text);
+}
+.card p {
+  color: var(--wh-text-muted);
+  line-height: 1.65;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ---------- HOW IT WORKS ---------- */
+.how {
+  background: var(--wh-bg-soft);
+  padding: clamp(70px, 10vh, 120px) 0;
+  scroll-margin-top: 84px;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.step {
+  background: var(--wh-bg);
+  border: 1px solid var(--wh-border);
+  border-radius: var(--wh-radius-lg);
+  padding: 28px 24px;
+}
+.stepN {
+  font-family: var(--wh-font-display);
+  font-size: 1.4rem;
+  color: var(--wh-accent-ink);
+}
+.step h3 {
+  font-size: 1.08rem;
+  font-weight: 650;
+  margin: 14px 0 10px;
+  color: var(--wh-text);
+}
+.step p {
+  color: var(--wh-text-muted);
+  line-height: 1.65;
+  margin: 0;
+  font-size: 0.93rem;
+}
+.howCta {
+  margin-top: 36px;
+}
+
+/* ---------- HONESTY ---------- */
+.honesty {
+  background: var(--wh-bg-dark);
+  color: var(--wh-text-inv);
+  padding: clamp(70px, 10vh, 110px) 0;
+}
+.honestyInner .h2 {
+  color: var(--wh-text-inv);
+}
+.honestyInner .h2 :global(.wh-em) {
+  color: var(--wh-accent-2-bright);
+}
+.honestyEyebrow {
+  color: var(--wh-text-inv-muted);
+}
+.rules {
+  list-style: none;
+  margin: 30px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  max-width: 70ch;
+}
+.rules li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--wh-text-inv-muted);
+  line-height: 1.65;
+}
+.rules li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 12px;
+  height: 2px;
+  background: var(--wh-accent-2);
+}
+
+/* ---------- FAQ ---------- */
+.faq {
+  background: var(--wh-bg);
+  padding: clamp(70px, 10vh, 120px) 0;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1000px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 860px) {
+  .cards,
+  .behaviour {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}

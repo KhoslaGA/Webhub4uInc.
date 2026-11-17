@@ -98,7 +98,7 @@ export default function CityPage({ params }) {
             Everything you need to <span className="wh-em">win locally.</span>
           </h2>
           <div className={styles.grid}>
-            {SERVICES.map((s) => (
+            {SERVICES.filter((s) => s.listed !== false).map((s) => (
               <Link key={s.slug} href={s.href} className={styles.card}>
                 <span
                   className={`${styles.tag} ${s.tag === "AI" ? styles.tagAi : ""}`}
@@ -107,7 +107,9 @@ export default function CityPage({ params }) {
                 </span>
                 <h3>{s.name}</h3>
                 <p>{s.short}</p>
-                <span className={styles.from}>from {s.priceFrom}</span>
+                {s.priceFrom ? (
+                  <span className={styles.from}>from {s.priceFrom}</span>
+                ) : null}
               </Link>
             ))}
           </div>

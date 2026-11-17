@@ -1,5 +1,5 @@
 import { SERVICE_PAGES, servicePath } from "@/data/servicePages";
-import { BUSINESS } from "@/lib/business";
+import { BUSINESS, REAL_ESTATE } from "@/lib/business";
 import { LOCATIONS } from "@/data/locations";
 import { getAllPosts } from "@/lib/blog";
 
@@ -21,6 +21,10 @@ export default function sitemap() {
     { path: "/blogs", priority: 0.7, changeFrequency: "weekly" },
     { path: "/faq", priority: 0.6, changeFrequency: "monthly" },
     { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" },
+    // noindex until a real demo exists — see REAL_ESTATE in business.js
+    ...(REAL_ESTATE.indexable
+      ? [{ path: "/real-estate-websites", priority: 0.8, changeFrequency: "monthly" }]
+      : []),
   ];
   const cityRoutes = LOCATIONS.map((c) => ({
     path: `/locations/${c.slug}`,
