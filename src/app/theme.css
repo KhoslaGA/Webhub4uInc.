@@ -1,7 +1,7 @@
 /* ============================================================
    WEBHUB4U DESIGN SYSTEM — v1 (Phase 1 of revamp)
    Scoped to .wh so it never bleeds into the legacy template.
-   Fonts: Fraunces (display) + Geist (body), loaded in layout.js
+   Fonts: Fraunces (display) + Geist (body), self-hosted via next/font/local in layout.js
    ============================================================ */
 
 .wh {
@@ -46,8 +46,8 @@
   --wh-border-azure: rgba(21, 169, 221, 0.24); /* azure-tinted, for dark sections */
 
   /* ---- Type ---- */
-  --wh-font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --wh-font-body: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --wh-font-display: var(--wh-font-fraunces), "Fraunces", Georgia, "Times New Roman", serif;
+  --wh-font-body: var(--wh-font-geist), "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
 
   /* ---- Motion ---- */

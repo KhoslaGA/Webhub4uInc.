@@ -13,6 +13,29 @@ const inter = localFont({
   variable: "--fontInter",
 });
 
+// Design-system fonts, self-hosted (no render-blocking third-party CSS).
+// Provenance and licences: src/app/fonts/README.md.
+const fraunces = localFont({
+  src: [
+    { path: "./fonts/Fraunces-Variable.woff2", weight: "100 900", style: "normal" },
+    { path: "./fonts/Fraunces-Variable-Italic.woff2", weight: "100 900", style: "italic" },
+  ],
+  display: "swap",
+  variable: "--wh-font-fraunces",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+  adjustFontFallback: "Times New Roman",
+});
+
+const geist = localFont({
+  src: "./fonts/Geist-Variable.woff2",
+  weight: "100 900",
+  style: "normal",
+  display: "swap",
+  variable: "--wh-font-geist",
+  fallback: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+  adjustFontFallback: "Arial",
+});
+
 export const metadata = {
   ...(process.env.VERCEL_ENV === "preview" ? { robots: { index: false, follow: false } } : {}),
   metadataBase: new URL(BUSINESS.url),
@@ -32,19 +55,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=Geist:wght@300..700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="en"
+      className={`${inter.variable} ${fraunces.variable} ${geist.variable}`}
+    >
       <body className={`${inter.className}`}>
         <SmoothScroll>{children}</SmoothScroll>
         {process.env.VERCEL_ENV !== "preview" && <Analytics />}
