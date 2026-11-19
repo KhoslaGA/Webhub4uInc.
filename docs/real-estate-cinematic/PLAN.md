@@ -77,6 +77,15 @@ Metadata: title "Cinematic Real Estate & Cottage Rental Websites | Webhub4U", de
 
 ## Operator gates (Gautam — Claude Code must not do these)
 
+**No-AI path (added 2026-11-19):** `scripts/walkthrough.mjs` turns a folder of ordered photos into the clip with pan/zoom and cross-fades only. Nothing is generated, so a real listing needs no AI label and no video tool:
+
+```
+node scripts/walkthrough.mjs <photos-dir> walkthrough.mp4
+node scripts/frames.mjs walkthrough.mp4 <slug> --fps 12
+```
+
+Measured on 8 photos at 1920×1080: a 15.8 s clip rendered in about 25 s; 190 frames at 12 fps. This is also what makes the "free preview from your own listing photos" offer something an agent can produce without a person. An AI glide (gate 1) remains the premium option.
+
 1. Produce the first walkthrough clip (Higgsfield or equivalent) from a real property you have rights to, or a captioned concept rendering. Check the tool's commercial-use terms and per-clip cost first.
 2. Run `node scripts/frames.mjs <clip> concept-villa`, commit the frames, review on the Vercel preview.
 3. Set `REAL_ESTATE.priceFrom` (or leave null) and flip `indexable: true`.
